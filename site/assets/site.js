@@ -172,26 +172,144 @@
     still.addEventListener("change", sync);
   }
 
-  // 2c. listening: the html carries a baked last.fm snapshot; the server refreshes /lastfm.json from cron.
-  // the spectrum is decoration: lively while something is playing, a slow low wave otherwise.
+  // 2c. listening. the html carries a baked last.fm snapshot and a first frame of each drawing;
+  // on the server cron refreshes /lastfm.json, which is swapped in here.
+  // deck: an ascii turntable that spins up and drops the arm while something is playing.
+  // genres: a six-axis ascii radar with a sweep. top artists: ascii bars that draw in.
   const fm = document.querySelector("[data-fm]");
   if (fm) {
     const $ = s => fm.querySelector(`[data-fm-${s}]`);
-    const hotEl = fm.querySelector(".eq-hot"), baseEl = fm.querySelector(".eq-base");
-    const B = 24, R = 7, BL = " ▁▂▃▄▅▆▇█";
-    baseEl.textContent = Array.from({ length: R }, () => Array(B).fill("█").join(" ")).join("\n");
-    let playing = false, lvl = new Array(B).fill(1);
+    const RAMP = " .,:;-=+*#%";
+    const blank = (R, C) => Array.from({ length: R }, () => new Array(C).fill(" "));
+    const join = g => g.map(r => r.join("").replace(/\s+$/, "")).join("\n");
+    // box-drawing stroke for a segment; a row is twice as tall as a column is wide
+    const stroke = (dx, dy) => {
+      const a = (Math.atan2(dy * 2, dx) * 180 / Math.PI + 180) % 180;
+      return a < 22.5 || a >= 157.5 ? "─" : a < 67.5 ? "╲" : a < 112.5 ? "│" : "╱";
+    };
+    // a set of stacked character layers where each cell belongs to at most one layer
+    const layers = (R, C, n, base = []) => {
+      const L = Array.from({ length: n }, (_, i) => base[i] ? base[i].map(r => r.slice()) : blank(R, C));
+      L.put = (i, y, x, ch) => {
+        if (y < 0 || y >= R || x < 0 || x >= C) return;
+        for (const g of L) g[y][x] = " ";
+        L[i][y][x] = ch;
+      };
+      return L;
+    };
+    let playing = false, genres = [], top = [];
 
+    // deck
+    const [vDim, vHi, vAcc] = fm.querySelectorAll(".vinyl pre");
+    const VC = 80, VR = 34, D = 68, PIV = [76, 2], REST = Math.PI / 2, PLAY = 2.17, ARM = 27.85;
+    const label = [], vBase = [blank(VR, VC), blank(VR, VC)];
+    for (let y = 0; y < VR; y++) for (let x = 0; x < D; x++) {
+      const u = (x + 0.5 - D / 2) / (D / 2), v = (y + 0.5 - VR / 2) / (VR / 2), r = Math.hypot(u, v), th = Math.atan2(v, u);
+      if (r > 1 || (r >= 0.27 && r < 0.3)) continue;
+      if (r < 0.27) { label.push([y, x, r, th]); continue; }
+      if ([0.5, 0.66, 0.82].some(g => Math.abs(r - g) < 0.018)) continue; // gaps between songs
+      if (r > 0.965) { vBase[1][y][x] = ":"; continue; }
+      // the light streak stays put while the record turns
+      const s = Math.abs(Math.cos(th + 0.6)) ** 24 * (0.4 + 0.6 * r);
+      const dot = Math.floor(r * 40) % 2 ? ":" : ".";
+      if (s > 0.2) vBase[1][y][x] = dot;
+      else vBase[0][y][x] = dot;
+    }
+    // tonearm: hairline svg over the ascii, in svg units (column, row * 2), pivot top right
+    const [cw, armLine, head] = fm.querySelectorAll(".v-arm line");
+    const setArm = a => {
+      const c = Math.cos(a), s = Math.sin(a), px = PIV[0] + 0.5, py = (PIV[1] + 0.5) * 2;
+      const at = (el, d0, d1) => { el.setAttribute("x1", (px + c * d0).toFixed(2)); el.setAttribute("y1", (py + s * d0).toFixed(2)); el.setAttribute("x2", (px + c * d1).toFixed(2)); el.setAttribute("y2", (py + s * d1).toFixed(2)); };
+      at(cw, -6.5, -3); at(armLine, 0, ARM - 2.5); at(head, ARM - 3, ARM);
+    };
+    let spin = 0, speed = 0, arm = 0, lastT = 0;
+    const deck = t => {
+      const dt = Math.min(0.25, Math.max(0, t - lastT)); lastT = t;
+      speed += ((playing ? 3.49 : 0) - speed) * Math.min(1, dt * 1.5); // 33 rpm
+      spin += speed * dt;
+      arm += ((playing ? 1 : 0) - arm) * Math.min(1, dt * 2.5);
+      const L = layers(VR, VC, 3, vBase);
+      for (const [y, x, r, th] of label) {
+        const d = Math.abs(((th - spin) % (2 * Math.PI) + 3 * Math.PI) % (2 * Math.PI) - Math.PI);
+        if (r < 0.04) L.put(1, y, x, "·");
+        else L.put(2, y, x, d < 0.14 ? "█" : r > 0.225 ? "▓" : r > 0.2 ? " " : "░");
+      }
+      for (const [rr, off] of [[0.62, 0], [0.86, 2.2], [0.74, 4.1]]) {
+        const a = spin + off;
+        L.put(1, Math.round(VR / 2 - 0.5 + Math.sin(a) * rr * VR / 2), Math.round(D / 2 - 0.5 + Math.cos(a) * rr * D / 2), "*");
+      }
+      setArm(REST + (PLAY - REST) * arm);
+      vDim.textContent = join(L[0]); vHi.textContent = join(L[1]); vAcc.textContent = join(L[2]);
+    };
+
+    // genres: crisp hairline geometry in svg, the ascii is the dot field, the fill and the sweep
+    const [rDim, rFill, rSw, rLbl, rHot] = fm.querySelectorAll(".radar pre"), dias = fm.querySelectorAll(".radar .dia");
+    const poly = fm.querySelector(".radar .poly");
+    const RC = 64, RR = 23, CX = 32, CY = 11, RY = 9, RX = 18, TAU = 2 * Math.PI;
+    const axis = k => { const a = (-90 + 60 * k) * Math.PI / 180; return [Math.cos(a), Math.sin(a)]; };
+    const inside = (x, y, P) => {
+      let c = false;
+      for (let i = 0, j = P.length - 1; i < P.length; j = i++)
+        if ((P[i][1] > y) !== (P[j][1] > y) && x < (P[j][0] - P[i][0]) * (y - P[i][1]) / (P[j][1] - P[i][1]) + P[i][0]) c = !c;
+      return c;
+    };
+    const OUT = [0, 1, 2, 3, 4, 5].map(k => [CX + axis(k)[0] * RX, CY + axis(k)[1] * RY]);
+    const cells = [], rGrid = blank(RR, RC);
+    for (let y = 0; y < RR; y++) for (let x = 0; x < RC; x++) if (inside(x, y, OUT)) {
+      const u = (x - CX) / RX, v = (y - CY) / RY;
+      cells.push([y, x, Math.hypot(u, v), Math.atan2(v, u)]);
+      if (x % 2 === 0) rGrid[y][x] = "·";
+    }
+    rGrid[CY][CX] = "+";
+    const radar = t => {
+      if (genres.length !== 6) return;
+      const grow = 1 - (1 - Math.min(1, t / 1.4)) ** 3, sw = (t * 0.9) % TAU;
+      const L = layers(RR, RC, 5, [rGrid]);
+      const P = genres.map((g, k) => {
+        const [ax, ay] = axis(k), v = Math.max(0.12, g.v) * grow * (0.96 + 0.04 * Math.sin(t * 1.6 + k * 1.3));
+        return [CX + ax * RX * v, CY + ay * RY * v];
+      });
+      for (const [y, x, rho, th] of cells) {
+        const lag = ((sw - th) % TAU + TAU) % TAU, k = lag < 1.1 ? 1 - lag / 1.1 : 0;
+        if (inside(x, y, P)) L.put(k > 0.45 ? 4 : 1, y, x, "··:::+"[Math.min(5, Math.floor(rho * 6))]);
+        else if (k > 0.3) L.put(2, y, x, k > 0.7 ? ":" : ".");
+      }
+      genres.forEach((g, k) => {
+        const [ax, ay] = axis(k), d = Math.abs(((Math.atan2(ay, ax) - sw) % TAU + 1.5 * TAU) % TAU - Math.PI);
+        const on = d < 0.45, name = g.g.slice(0, 12), vx = CX + ax * RX, vy = Math.round(CY + ay * RY);
+        const y = k === 0 ? vy - 2 : k === 3 ? vy + 2 : vy;
+        const x0 = k === 0 || k === 3 ? Math.round(CX - name.length / 2) : ax > 0 ? Math.round(vx) + 3 : Math.round(vx) - 2 - name.length;
+        [...name].forEach((c, i) => L.put(on ? 4 : 3, y, x0 + i, c));
+        dias[k].style.setProperty("--c", P[k][0].toFixed(2));
+        dias[k].style.setProperty("--r", P[k][1].toFixed(2));
+        dias[k].classList.toggle("on", on);
+      });
+      poly.setAttribute("points", P.map(([x, y]) => `${(x + 0.5).toFixed(2)},${((y + 0.5) * 2).toFixed(2)}`).join(" "));
+      [rDim, rFill, rSw, rLbl, rHot].forEach((e, i) => { e.textContent = join(L[i]); });
+    };
+
+    // top artists
+    const barsEl = $("top");
+    let barsFrom = null, barsDone = false;
+    const bars = g => {
+      const most = Math.max(1, ...top.map(a => a.n));
+      barsEl.replaceChildren(...top.flatMap(a => {
+        const f = Math.round(a.n / most * 30 * g), name = a.a.length > 14 ? a.a.slice(0, 13) + "…" : a.a;
+        const parts = [[name.padEnd(16), "span"], ["━".repeat(f), "b"], ["─".repeat(30 - f), "i"], [String(a.n).padStart(5) + "\n", "em"]];
+        return parts.map(([s, tag]) => { const e = document.createElement(tag); e.textContent = s; return e; });
+      }));
+    };
+
+    // data
     const day = u => new Date(u * 1000).toLocaleDateString("en-GB", { day: "numeric", month: "short" }).toLowerCase();
     const ago = u => {
       if (!u) return "now";
-      const s = Date.now() / 1000 - u;
-      const n = (v, w) => `${v} ${w}${v === 1 ? "" : "s"} ago`;
+      const s = Date.now() / 1000 - u, n = (v, w) => `${v} ${w}${v === 1 ? "" : "s"} ago`;
       return s < 90 ? "just now" : s < 3600 ? `${Math.round(s / 60)} min ago`
         : s < 86400 ? `${Math.round(s / 3600)} h ago` : s < 604800 ? n(Math.round(s / 86400), "day") : day(u);
     };
-    const el = (tag, txt, attrs) => { const e = document.createElement(tag); e.textContent = txt; Object.assign(e, attrs); return e; };
-
+    const el = (tag, txt) => { const e = document.createElement(tag); e.textContent = txt; return e; };
+    const read = () => JSON.parse(fm.querySelector("script[type='application/json']").textContent);
     const render = d => {
       const [last, ...rest] = d.recent;
       playing = d.now;
@@ -203,46 +321,30 @@
       $("artist").textContent = last.a;
       $("recent").replaceChildren(...rest.slice(0, 4).map(r => {
         const li = el("li", "");
-        li.append(el("span", r.t), el("span", r.a), el("time", ago(r.u)));
+        li.append(el("time", ago(r.u)), el("span", r.t), el("span", r.a));
         return li;
       }));
-      const top = Math.max(1, ...d.top.map(a => a.n));
-      $("top").replaceChildren(...d.top.map(a => {
-        const li = el("li", "");
-        li.style.setProperty("--w", (a.n / top).toFixed(3));
-        li.append(el("span", a.a), el("b", String(a.n)));
-        return li;
-      }));
+      if (d.genres && d.genres.length === 6) { genres = d.genres; $("genres").textContent = genres.map(g => g.g).join(", "); }
+      top = d.top; barsFrom = null; barsDone = false;
       $("scrobbles").textContent = d.scrobbles.toLocaleString("en-US");
       $("artists").textContent = d.artists.toLocaleString("en-US");
       $("since").textContent = new Date(d.since * 1000).getUTCFullYear();
+      if (still.matches) { arm = playing ? 1 : 0; deck(lastT); radar(99); bars(1); }
     };
+    render(read());
     const refresh = () => fetch("/lastfm.json", { cache: "no-cache" })
       .then(r => r.ok ? r.json() : null).then(d => d && d.recent && d.recent.length && render(d)).catch(() => {});
-    fm.querySelectorAll("time[data-u]").forEach(e => { if (e.dataset.u) e.textContent = ago(+e.dataset.u); });
     refresh();
     setInterval(() => { if (!document.hidden) refresh(); }, 120000);
 
-    let seed = 3;
-    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    loop(fm, 12, t => {
-      for (let i = 0; i < B; i++) {
-        const tilt = 1 - i / B * 0.55;
-        const want = playing
-          ? (1.5 + 4.5 * rnd() * tilt + 1.2 * Math.sin(t * 7 + i * 0.4) * tilt)
-          : (1.2 + 0.9 * Math.sin(i * 0.55 + t * 0.9) + 0.5 * Math.sin(i * 1.7 - t * 1.3));
-        lvl[i] += (Math.max(0.2, Math.min(R, want)) - lvl[i]) * (playing ? 0.55 : 0.25);
-      }
-      const rows = [];
-      for (let r = 0; r < R; r++) {
-        let line = "";
-        for (let i = 0; i < B; i++) {
-          const f = lvl[i] - (R - 1 - r);
-          line += (f >= 1 ? BL[8] : f > 0 ? BL[Math.floor(f * 8)] : " ") + " ";
-        }
-        rows.push(line.trimEnd());
-      }
-      hotEl.textContent = rows.join("\n");
+    loop(fm.querySelector(".vinyl"), 12, deck);
+    loop(fm.querySelector(".radar"), 12, radar);
+    loop(barsEl, 30, t => {
+      if (barsDone) return;
+      if (barsFrom === null) barsFrom = t;
+      const g = Math.min(1, (t - barsFrom) / 1.1);
+      bars(1 - (1 - g) ** 3);
+      barsDone = g >= 1;
     });
   }
 

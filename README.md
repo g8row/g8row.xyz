@@ -36,7 +36,7 @@ one-time setup is in the header of `deploy/deploy.sh`. after that:
 
 ## listening (last.fm)
 
-the page ships with a snapshot from `tools/lastfm.json`. on the server, cron refreshes `/var/www/g8row.xyz/lastfm.json`
+the page ships with a snapshot from `tools/lastfm.json` (now playing, recent, top artists, six genres from the top artists' last.fm tags). on the server, cron refreshes `/var/www/g8row.xyz/lastfm.json`
 and the page swaps it in, so the api key never reaches the browser. get a key at https://www.last.fm/api/account/create, then:
 
 ```sh

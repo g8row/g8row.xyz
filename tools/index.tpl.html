@@ -256,23 +256,38 @@ test    capture ......... <b>ok</b>
     <div><span class="eyebrow">listening</span><h2>what's playing while i work.</h2><p>straight from last.fm, refreshed every couple of minutes.</p></div>
   </div>
   <div class="fm" data-fm>
-    <article class="card np lit">
-      <div class="np-top"><span class="pill" data-fm-state>{{fm-state}}</span><time data-fm-when data-u="{{fm-u}}">{{fm-when}}</time></div>
-      <div class="np-eq" aria-hidden="true"><pre class="eq-base"></pre><pre class="eq-hot">
-{{fm-eq}}</pre></div>
-      <div class="np-track"><h3 data-fm-track>{{fm-track}}</h3><p data-fm-artist>{{fm-artist}}</p></div>
-      <ol class="np-recent" data-fm-recent>{{fm-recent}}</ol>
-    </article>
-    <article class="card fm-top lit">
-      <span class="eyebrow">top artists · last 7 days</span>
-      <ol class="bars" data-fm-top>{{fm-top}}</ol>
-      <dl class="fm-stats">
-        <div><dt>scrobbles</dt><dd data-fm-scrobbles>{{fm-scrobbles}}</dd></div>
-        <div><dt>artists</dt><dd data-fm-artists>{{fm-artists}}</dd></div>
-        <div><dt>since</dt><dd data-fm-since>{{fm-since}}</dd></div>
-      </dl>
-      <div class="row"><a class="btn" href="https://www.last.fm/user/pluwak">last.fm/pluwak ↗</a></div>
-    </article>
+    <script type="application/json">{{fm-json}}</script>
+    <div class="fm-deck lit">
+      <div class="fm-row"><span class="pill{{fm-live}}" data-fm-state>{{fm-state}}</span><time data-fm-when>{{fm-when}}</time></div>
+      <div class="vinyl" aria-hidden="true"><div class="lay"><pre class="v-dim">
+{{v-dim}}</pre><pre class="v-hi">
+{{v-hi}}</pre><pre class="v-acc">
+{{v-acc}}</pre>{{v-arm}}</div></div>
+      <div class="fm-now"><h3 data-fm-track>{{fm-track}}</h3><p data-fm-artist>{{fm-artist}}</p></div>
+    </div>
+    <div class="fm-genres">
+      <div class="fm-row"><span class="eyebrow">genres</span><span class="eyebrow">last 3 months</span></div>
+      <div class="radar" aria-hidden="true"><div class="lay"><pre class="r-dim">
+{{r-dim}}</pre><pre class="r-fill">
+{{r-fill}}</pre><pre class="r-sw"></pre><pre class="r-lbl">
+{{r-lbl}}</pre><pre class="r-hot">
+{{r-hot}}</pre>{{r-dias}}</div></div>
+      <p class="sr" data-fm-genres>{{fm-genres}}</p>
+    </div>
+    <div class="fm-top">
+      <div class="fm-row"><span class="eyebrow">top artists</span><span class="eyebrow">last 7 days</span></div>
+      <pre class="abars" data-fm-top>{{fm-bars}}</pre>
+    </div>
+    <div class="fm-log">
+      <div class="fm-row"><span class="eyebrow">recently</span></div>
+      <ol data-fm-recent>{{fm-recent}}</ol>
+    </div>
+    <dl class="fm-stats">
+      <div><dt>scrobbles</dt><dd data-fm-scrobbles>{{fm-scrobbles}}</dd></div>
+      <div><dt>artists</dt><dd data-fm-artists>{{fm-artists}}</dd></div>
+      <div><dt>since</dt><dd data-fm-since>{{fm-since}}</dd></div>
+      <div><dt>profile</dt><dd><a href="https://www.last.fm/user/pluwak">last.fm/pluwak ↗</a></dd></div>
+    </dl>
   </div>
 </section>
 </main>
