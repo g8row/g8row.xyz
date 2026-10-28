@@ -172,6 +172,80 @@
     still.addEventListener("change", sync);
   }
 
+  // 2c. listening: the html carries a baked last.fm snapshot; the server refreshes /lastfm.json from cron.
+  // the spectrum is decoration: lively while something is playing, a slow low wave otherwise.
+  const fm = document.querySelector("[data-fm]");
+  if (fm) {
+    const $ = s => fm.querySelector(`[data-fm-${s}]`);
+    const hotEl = fm.querySelector(".eq-hot"), baseEl = fm.querySelector(".eq-base");
+    const B = 24, R = 7, BL = " ▁▂▃▄▅▆▇█";
+    baseEl.textContent = Array.from({ length: R }, () => Array(B).fill("█").join(" ")).join("\n");
+    let playing = false, lvl = new Array(B).fill(1);
+
+    const day = u => new Date(u * 1000).toLocaleDateString("en-GB", { day: "numeric", month: "short" }).toLowerCase();
+    const ago = u => {
+      if (!u) return "now";
+      const s = Date.now() / 1000 - u;
+      const n = (v, w) => `${v} ${w}${v === 1 ? "" : "s"} ago`;
+      return s < 90 ? "just now" : s < 3600 ? `${Math.round(s / 60)} min ago`
+        : s < 86400 ? `${Math.round(s / 3600)} h ago` : s < 604800 ? n(Math.round(s / 86400), "day") : day(u);
+    };
+    const el = (tag, txt, attrs) => { const e = document.createElement(tag); e.textContent = txt; Object.assign(e, attrs); return e; };
+
+    const render = d => {
+      const [last, ...rest] = d.recent;
+      playing = d.now;
+      const state = $("state");
+      state.textContent = d.now ? "now playing" : "last played";
+      state.classList.toggle("live", d.now);
+      $("when").textContent = d.now ? "" : ago(last.u);
+      $("track").textContent = last.t;
+      $("artist").textContent = last.a;
+      $("recent").replaceChildren(...rest.slice(0, 4).map(r => {
+        const li = el("li", "");
+        li.append(el("span", r.t), el("span", r.a), el("time", ago(r.u)));
+        return li;
+      }));
+      const top = Math.max(1, ...d.top.map(a => a.n));
+      $("top").replaceChildren(...d.top.map(a => {
+        const li = el("li", "");
+        li.style.setProperty("--w", (a.n / top).toFixed(3));
+        li.append(el("span", a.a), el("b", String(a.n)));
+        return li;
+      }));
+      $("scrobbles").textContent = d.scrobbles.toLocaleString("en-US");
+      $("artists").textContent = d.artists.toLocaleString("en-US");
+      $("since").textContent = new Date(d.since * 1000).getUTCFullYear();
+    };
+    const refresh = () => fetch("/lastfm.json", { cache: "no-cache" })
+      .then(r => r.ok ? r.json() : null).then(d => d && d.recent && d.recent.length && render(d)).catch(() => {});
+    fm.querySelectorAll("time[data-u]").forEach(e => { if (e.dataset.u) e.textContent = ago(+e.dataset.u); });
+    refresh();
+    setInterval(() => { if (!document.hidden) refresh(); }, 120000);
+
+    let seed = 3;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    loop(fm, 12, t => {
+      for (let i = 0; i < B; i++) {
+        const tilt = 1 - i / B * 0.55;
+        const want = playing
+          ? (1.5 + 4.5 * rnd() * tilt + 1.2 * Math.sin(t * 7 + i * 0.4) * tilt)
+          : (1.2 + 0.9 * Math.sin(i * 0.55 + t * 0.9) + 0.5 * Math.sin(i * 1.7 - t * 1.3));
+        lvl[i] += (Math.max(0.2, Math.min(R, want)) - lvl[i]) * (playing ? 0.55 : 0.25);
+      }
+      const rows = [];
+      for (let r = 0; r < R; r++) {
+        let line = "";
+        for (let i = 0; i < B; i++) {
+          const f = lvl[i] - (R - 1 - r);
+          line += (f >= 1 ? BL[8] : f > 0 ? BL[Math.floor(f * 8)] : " ") + " ";
+        }
+        rows.push(line.trimEnd());
+      }
+      hotEl.textContent = rows.join("\n");
+    });
+  }
+
   // 3. pointer light on cards
   if (matchMedia("(hover: hover)").matches) {
     for (const card of document.querySelectorAll(".lit")) {

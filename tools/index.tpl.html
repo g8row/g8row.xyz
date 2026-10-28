@@ -34,6 +34,7 @@
   <a href="#work">work</a>
   <a href="#bench">bench</a>
   <a href="#experience">experience</a>
+  <a href="#listening">listening</a>
   <a href="https://github.com/g8row">github ↗</a>
 </nav>
 
@@ -248,6 +249,31 @@ test    capture ......... <b>ok</b>
       <tr><td>web &amp; ops</td><td><div class="row"><span class="chip">docker</span><span class="chip">nginx</span><span class="chip">cloudflare</span><span class="chip o">networking</span></div></td><td>homelab, client sites</td></tr>
     </tbody>
   </table></div>
+</section>
+<section class="sec mark" id="listening">
+  <div class="head flip">
+    {{deco-music}}
+    <div><span class="eyebrow">listening</span><h2>what's playing while i work.</h2><p>straight from last.fm, refreshed every couple of minutes.</p></div>
+  </div>
+  <div class="fm" data-fm>
+    <article class="card np lit">
+      <div class="np-top"><span class="pill" data-fm-state>{{fm-state}}</span><time data-fm-when data-u="{{fm-u}}">{{fm-when}}</time></div>
+      <div class="np-eq" aria-hidden="true"><pre class="eq-base"></pre><pre class="eq-hot">
+{{fm-eq}}</pre></div>
+      <div class="np-track"><h3 data-fm-track>{{fm-track}}</h3><p data-fm-artist>{{fm-artist}}</p></div>
+      <ol class="np-recent" data-fm-recent>{{fm-recent}}</ol>
+    </article>
+    <article class="card fm-top lit">
+      <span class="eyebrow">top artists · last 7 days</span>
+      <ol class="bars" data-fm-top>{{fm-top}}</ol>
+      <dl class="fm-stats">
+        <div><dt>scrobbles</dt><dd data-fm-scrobbles>{{fm-scrobbles}}</dd></div>
+        <div><dt>artists</dt><dd data-fm-artists>{{fm-artists}}</dd></div>
+        <div><dt>since</dt><dd data-fm-since>{{fm-since}}</dd></div>
+      </dl>
+      <div class="row"><a class="btn" href="https://www.last.fm/user/pluwak">last.fm/pluwak ↗</a></div>
+    </article>
+  </div>
 </section>
 </main>
 

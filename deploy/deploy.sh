@@ -7,5 +7,5 @@
 set -eu
 HOST=${HOST:-debian@debian}
 cd "$(dirname "$0")/.."
-rsync -az --delete --exclude '.DS_Store' site/ "$HOST:/var/www/g8row.xyz/"
+rsync -az --delete --exclude '.DS_Store' --exclude lastfm.json site/ "$HOST:/var/www/g8row.xyz/"
 echo "deployed to $HOST:/var/www/g8row.xyz"

@@ -69,7 +69,7 @@ t = t.replace('{{board}}', '\n'.join(r.rstrip() for r in rows))
 
 # background decoration: an ascii-shaded m3 shape inside construction lines
 RAMP = " .,:;-=+*#%"
-DECO = dict(cookie=(9, .1), clover=(4, .3), flower=(8, .16))
+DECO = dict(cookie=(9, .1), clover=(4, .3), flower=(8, .16), burst=(12, .07))
 def deco(name, side, fs=10, nrows=34):
     n, a = DECO[name]
     cw = fs * 0.6; H = nrows * fs; R = 0.42 * H; cols = int(2 * R * 1.3 / cw); W = cols * cw
@@ -104,6 +104,33 @@ def deco(name, side, fs=10, nrows=34):
     return ('<div class="deco" aria-hidden="true"><div class="glyph %s" style="width:%.0fpx;height:%.0fpx">%s<pre style="--fs:%dpx">\n%s</pre>%s</div></div>'
             % (side, W, H, svg, fs, '\n'.join(out), lbl))
 t = t.replace('{{deco-work}}', deco('clover', 'r')).replace('{{deco-bench}}', deco('flower', 'l')).replace('{{deco-exp}}', deco('cookie', 'r', nrows=30))
+t = t.replace('{{deco-music}}', deco('burst', 'l', nrows=30))
+
+# listening: a last.fm snapshot baked in (tools/lastfm.json); the js swaps in /lastfm.json from the server when it exists
+import json, datetime
+fm = json.load(open(SP + 'lastfm.json'))
+esc = html.escape
+day = lambda u: datetime.datetime.fromtimestamp(u, datetime.timezone.utc).strftime('%-d %b').lower() if u else 'now'
+last = fm['recent'][0]
+t = t.replace('{{fm-state}}', 'now playing' if fm['now'] else 'last played').replace('{{fm-when}}', '' if fm['now'] else day(last['u']))
+t = t.replace('{{fm-u}}', str(last['u'] or '')).replace('{{fm-track}}', esc(last['t'])).replace('{{fm-artist}}', esc(last['a']))
+t = t.replace('{{fm-recent}}', ''.join('<li><span>%s</span><span>%s</span><time data-u="%s">%s</time></li>' % (esc(r['t']), esc(r['a']), r['u'] or '', day(r['u'])) for r in fm['recent'][1:5]))
+top = max([a['n'] for a in fm['top']] + [1])
+t = t.replace('{{fm-top}}', ''.join('<li style="--w:%.3f"><span>%s</span><b>%d</b></li>' % (a['n'] / top, esc(a['a']), a['n']) for a in fm['top']))
+t = t.replace('{{fm-scrobbles}}', '{:,}'.format(fm['scrobbles'])).replace('{{fm-artists}}', '{:,}'.format(fm['artists']))
+t = t.replace('{{fm-since}}', datetime.datetime.fromtimestamp(fm['since'], datetime.timezone.utc).strftime('%Y'))
+# idle spectrum frame, 24 bands two columns apart, 7 rows
+EQ_R, EQ_B = 7, 24
+lv = [1.2 + 0.9 * math.sin(i * 0.55 + 1.3) + 0.5 * math.sin(i * 1.7) for i in range(EQ_B)]
+BL = ' ▁▂▃▄▅▆▇█'
+rows = []
+for r in range(EQ_R):
+    line = ''
+    for i in range(EQ_B):
+        f = lv[i] - (EQ_R - 1 - r)
+        line += (BL[8] if f >= 1 else BL[max(0, int(f * 8))] if f > 0 else ' ') + ' '
+    rows.append(line.rstrip())
+t = t.replace('{{fm-eq}}', '\n'.join(rows))
 assert '{{' not in t, t[t.index('{{'):t.index('{{') + 30]
 open(OUT, 'w').write(t)
 print('ok', len(t))

@@ -11,6 +11,8 @@ site/                   what gets deployed
   assets/fonts/         geist + geist mono, latin subsets (woff2)
 tools/
   index.tpl.html        the page source: edit this
+  lastfm.py             writes the listening data (run from cron on the server; needs LASTFM_API_KEY)
+  lastfm.json           the last.fm snapshot baked into the page
   build.py              fills in m3 shape paths, the baked hero frame, the tablet pen + frame-time svg, the bench board and the ascii background shapes
 deploy/
   g8row.xyz.conf        nginx vhost for the homelab (certbot adds tls)
@@ -31,6 +33,18 @@ one-time setup is in the header of `deploy/deploy.sh`. after that:
 ```sh
 ./deploy/deploy.sh
 ```
+
+## listening (last.fm)
+
+the page ships with a snapshot from `tools/lastfm.json`. on the server, cron refreshes `/var/www/g8row.xyz/lastfm.json`
+and the page swaps it in, so the api key never reaches the browser. get a key at https://www.last.fm/api/account/create, then:
+
+```sh
+echo 'LASTFM_API_KEY=...' > ~/.config/lastfm.env && chmod 600 ~/.config/lastfm.env
+( crontab -l 2>/dev/null; echo '*/2 * * * * set -a; . $HOME/.config/lastfm.env; python3 $HOME/Documents/g8row.xyz/tools/lastfm.py /var/www/g8row.xyz/lastfm.json' ) | crontab -
+```
+
+deploys exclude `lastfm.json` so they don't wipe it.
 
 ## design
 
