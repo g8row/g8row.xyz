@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>alexander gurov · g8row</title>
+<meta name="description" content="alexander gurov (g8row): junior engineer at konsulko. android roms, yocto images, test benches and small apps.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="alexander gurov · g8row">
+<meta property="og:description" content="new ideas, built on foundations that behave the same way every time.">
+<meta property="og:url" content="https://g8row.xyz/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#work">skip to work</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-cookie" viewBox="0 0 100 100"><path d="{{cookie}}"/></symbol>
+  <symbol id="s-clover" viewBox="0 0 100 100"><path d="{{clover}}"/></symbol>
+  <symbol id="s-flower" viewBox="0 0 100 100"><path d="{{flower}}"/></symbol>
+  <symbol id="s-burst" viewBox="0 0 100 100"><path d="{{burst}}"/></symbol>
+  <symbol id="s-wave" viewBox="0 0 800 16"><path d="{{wave}}"/></symbol>
+  <symbol id="s-speaker" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.47 4.47 0 0 0 2.5-4z"/></symbol>
+  <symbol id="s-laptop" viewBox="0 0 24 24"><path d="M4 6h16v10H4zM2 18h20v2H2z"/></symbol>
+</svg>
+
+<div class="frame">
+
+<nav class="nav" aria-label="main">
+  <a href="#work">work</a>
+  <a href="#bench">bench</a>
+  <a href="#experience">experience</a>
+  <a href="https://github.com/g8row">github ↗</a>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="hero-top"><span>junior engineer at konsulko</span><span>embedded linux · android · apps</span></div>
+  <div class="signal" aria-hidden="true"><pre class="l-dots"></pre><pre class="l-lines">{{hero-lines}}</pre><pre class="l-peaks">{{hero-peaks}}</pre></div>
+  <div class="namebox">
+    <h1 class="name"><span class="handle">g8row</span><span>alexander</span><span>gurov</span></h1>
+    <p class="tag">new ideas, built on <em>foundations that behave the same way every time.</em></p>
+  </div>
+</header>
+
+<div class="cells facts">
+  <div class="cell"><span class="eyebrow">now</span><b>konsulko</b><span>junior engineer, secure boot</span></div>
+  <div class="cell"><span class="eyebrow">studied</span><b>cs, fmi '26</b><span>sofia university</span></div>
+  <div class="cell"><span class="eyebrow">open source</span><b>469 ★</b><span>44 public repos</span></div>
+  <div class="cell"><span class="eyebrow">homelab</span><b>self-hosted</b><span>media, servers, networking</span></div>
+</div>
+
+<section class="sec mark" id="work">
+  <div class="head">
+    {{deco-work}}
+    <div><span class="eyebrow">work</span><h2>a few things i've built.</h2></div>
+    <div><p>what i work on after work and between exams. tablets, boards, apps, whatever i end up needing.</p></div>
+  </div>
+
+  <div class="features">
+    <article class="card feature lit">
+      <div class="text">
+        <div class="top"><svg class="shape a" aria-hidden="true"><use href="#s-cookie"/></svg>
+          <div><h3>centuryplay</h3><span class="sub">kotlin · android 11+ · 63 ★</span></div></div>
+        <p>streams whatever my android phone is playing to airplay speakers. i built it so a 1990s bang &amp; olufsen beosound century could play from my phone, through a raspberry pi running shairport-sync. lossless, multi-room, and it shows up in the system output switcher like any bluetooth device.</p>
+        <div class="row"><span class="chip a">kotlin</span><span class="chip">airplay 2</span><span class="chip o">material 3 expressive</span><span class="chip o">shizuku</span></div>
+        <div class="row"><a class="btn" href="https://github.com/g8row/centuryplay">source ↗</a></div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="cp">
+          <div class="cp-head"><b>centuryplay</b><span>playing on century</span></div>
+          <div class="spk on">
+            <span class="ic"><svg><use href="#s-speaker"/></svg></span>
+            <span><b>century</b><small>playing · lossless</small></span>
+            <span class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <div class="prog"><div class="w"><svg><use href="#s-wave"/></svg></div><span class="knob"></span><span class="flat"></span></div>
+          </div>
+          <div class="spk"><span class="ic"><svg><use href="#s-speaker"/></svg></span><span><b>living room</b><small>airplay 2 · 192.168.1.20</small></span><span></span></div>
+          <div class="spk"><span class="ic"><svg><use href="#s-laptop"/></svg></span><span><b>macbook</b><small>airplay 2 · 192.168.1.31</small></span><span></span></div>
+          <div class="cp-bar"><span>alac · 44.1 khz · multi-room</span><span class="stop">■ stop</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card feature flip lit">
+      <div class="text">
+        <div class="top"><svg class="shape" aria-hidden="true"><use href="#s-clover"/></svg>
+          <div><h3>redmi pad pro roms</h3><span class="sub">aosp · android 16 + 17</span></div></div>
+        <p>custom roms for both pad pro models, starting from a full dump of the stock tablet. most of the time went into making it feel smooth: perfetto traces, surfaceflinger composition and hwui on vulkan until the jank went away. the xiaomi pen works too, worked out from captures of the stock rom.</p>
+        <dl class="spec">
+          <dt>devices</dt><dd>dizi (wi-fi), ruan (5g)</dd>
+          <dt>soc</dt><dd>sm7435 "parrot"</dd>
+          <dt>roms</dt><dd>evolution x 16 + 17, lineageos 23.2</dd>
+          <dt>kernel</dt><dd>source-built 5.10 gki</dd>
+          <dt>gpu</dt><dd>hwui on vulkan, tuned sf composition</dd>
+          <dt>pen</dt><dd>xiaomi pen, bonding + pen keys</dd>
+        </dl>
+        <div class="row"><a class="btn" href="https://github.com/g8row/dizi-bringup">dizi ↗</a><a class="btn" href="https://github.com/g8row/ruan-bringup">ruan ↗</a></div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="tablet"><div class="screen">
+          <div class="bar"><span>dizi · 120 hz</span><span>hwui · vulkan</span></div>
+          {{pad}}
+          <div class="ft"><span>frame time</span><span>pen · bonded</span></div>
+        </div></div>
+      </div>
+    </article>
+
+    <article class="card feature lit">
+      <div class="text">
+        <div class="top"><svg class="shape" aria-hidden="true"><use href="#s-burst"/></svg>
+          <div><h3>equip-1</h3><span class="sub">yocto · rockchip rk3528a · rock 2f</span></div></div>
+        <p>an old dv camcorder, a radxa rock 2f and a phone. the yocto image captures dv and hdv over firewire, streams a live preview over webrtc, and gets set up over bluetooth and wi-fi from an android app. flash it to an sd card and it boots straight into the recorder.</p>
+        <div class="pipe" aria-label="ieee-1394 camera to rk3528a to mediamtx to webrtc to android"><span>ieee-1394</span><i>→</i><span class="on">rk3528a</span><i>→</i><span>mediamtx</span><i>→</i><span>whep</span><i>→</i><span>android</span></div>
+        <div class="row"><a class="btn" href="https://github.com/g8row/meta-firewire-recorder">meta-firewire-recorder ↗</a><a class="btn" href="https://github.com/g8row/meta-rockchip">meta-rockchip ↗</a></div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <svg class="board" viewBox="0 0 560 290">
+          <rect class="part" x="30" y="120" width="100" height="56" rx="12"/>
+          <rect class="part" x="8" y="132" width="26" height="32" rx="7"/>
+          <circle class="soc" cx="20" cy="148" r="9"/>
+          <rect class="part" x="88" y="104" width="38" height="18" rx="5"/>
+          <circle class="rec" cx="118" cy="134" r="3.5"/>
+          <text x="30" y="200">dv camcorder</text>
+          <path class="wire" d="M130 152 C176 152 180 172 222 172"/>
+          <path class="flow" d="M130 152 C176 152 180 172 222 172"/>
+          <text x="140" y="138">ieee-1394</text>
+          <rect class="pcb" x="220" y="70" width="190" height="170" rx="14"/>
+          <circle cx="236" cy="86" r="5" fill="none" stroke="#3c3c3c"/><circle cx="394" cy="86" r="5" fill="none" stroke="#3c3c3c"/>
+          <circle cx="236" cy="224" r="5" fill="none" stroke="#3c3c3c"/><circle cx="394" cy="224" r="5" fill="none" stroke="#3c3c3c"/>
+          {{pins}}
+          <rect class="part" x="212" y="160" width="14" height="24" rx="3"/>
+          <rect class="soc" x="262" y="132" width="66" height="66" rx="5"/>
+          <rect x="272" y="142" width="46" height="46" rx="3" fill="none" stroke="#2e2e2e"/>
+          <text class="hot" x="295" y="169" text-anchor="middle">rk3528a</text>
+          <rect class="part" x="398" y="122" width="22" height="18" rx="2"/>
+          <rect class="part" x="398" y="146" width="22" height="18" rx="2"/>
+          <rect class="part" x="394" y="178" width="26" height="32" rx="2"/>
+          <circle class="led" cx="244" cy="212" r="3.5"/>
+          <text x="254" y="216">act</text>
+          <text x="315" y="262" text-anchor="middle">radxa rock 2f</text>
+          <path class="air" d="M436 117.5 A12 12 0 0 1 436 134.5"/>
+          <path class="air d1" d="M443 110.4 A22 22 0 0 1 443 141.6"/>
+          <path class="air d2" d="M450 103.4 A32 32 0 0 1 450 148.6"/>
+          <text x="424" y="176">webrtc</text>
+          <rect class="part" x="478" y="62" width="72" height="150" rx="14"/>
+          <rect x="484" y="74" width="60" height="126" rx="7" fill="#0d0f13"/>
+          <text class="hot" x="490" y="90" style="font-size:10px">live</text>
+          <circle class="rec" cx="536" cy="86" r="3"/>
+          <rect x="489" y="98" width="50" height="36" rx="4" fill="#1b222c"/>
+          <path d="M509 108 L509 124 L522 116 Z" fill="#a8c7fa"/>
+          <rect x="489" y="144" width="40" height="4" rx="2" fill="#2a2a2a"/>
+          <rect x="489" y="154" width="28" height="4" rx="2" fill="#2a2a2a"/>
+          <circle cx="514" cy="182" r="10" fill="#a8c7fa"/>
+          <circle cx="514" cy="182" r="4" fill="#e5484d"/>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+  <div class="cells more">
+    <div class="cell"><div class="hd"><a href="https://github.com/g8row/PhotosBackup">PhotosBackup</a><span class="sub">swift · 226 ★</span></div>
+      <p>backs up iphone photos, videos and albums to google photos, entirely on the phone. no desktop app, no server.</p>
+      <div class="row"><span class="chip">swiftui</span><span class="chip o">ios</span></div></div>
+    <div class="cell"><div class="hd"><b>lec2tex + durjaven</b><span class="sub">python · latex</span></div>
+      <p>turning university material into books: lecture videos with bulgarian audio and whiteboards into a 172-page statistics book, and 365 pages plus 165 photos of state-exam notes into one compilable latex book.</p>
+      <div class="row"><a class="chip o" href="https://github.com/AlexSPx/lec2tex">lec2tex ↗</a><a class="chip o" href="https://g8row.github.io/durjaven/">durjaven ↗</a></div></div>
+    <div class="cell"><div class="hd"><a href="https://github.com/g8row/kinectfx">kinectfx</a><span class="sub">python · qt</span></div>
+      <p>an xbox 360 kinect as a webcam: depth point clouds, relief lighting and scan planes, piped into a virtual camera for discord.</p>
+      <div class="row"><span class="chip">depth</span><span class="chip o">virtual camera</span></div></div>
+    <div class="cell"><div class="hd"><b>veadent + winslow</b><span class="sub">web · client sites</span></div>
+      <p>veadent.bg, for a 24/7 dental clinic in sofia, and winslow, a bilingual site for holiday rentals and sales in bansko, edited through a git-based cms.</p>
+      <div class="row"><a class="chip o" href="https://veadent.bg">veadent.bg ↗</a><span class="chip o">astro</span></div></div>
+  </div>
+</section>
+
+<section class="sec mark" id="bench">
+  <div class="head flip">
+    {{deco-bench}}
+    <div><span class="eyebrow">the bench</span><h2>a board, a serial cable and a lot of reboots.</h2><p>most of what i build ends up on this setup at some point.</p></div>
+  </div>
+  <div class="benchrow">
+    <div class="card bench lit" aria-hidden="true">
+      <div class="bench-grid">
+        <div class="b-board">
+<pre class="b-base">
+{{board}}</pre><pre class="b-hot"></pre>
+<pre class="b-bar">pass   [████████████████████████] 100%</pre>
+        </div>
+<pre class="console">bench   power on
+bench   writing image.wic.gz
+bench   flash ok, checksum matches
+U-Boot SPL 2024.07
+Starting kernel ...
+[    0.000000] Booting Linux on CPU 0x0
+[    3.411870] systemd: multi-user.target
+board login: root
+test    boot ............ <b>ok</b>
+test    network ......... <b>ok</b>
+test    capture ......... <b>ok</b>
+<b>run 0412 passed</b></pre>
+      </div>
+      <div class="stages"><span data-stage="power">power</span><span data-stage="flash">flash</span><span data-stage="boot">boot</span><span data-stage="test">test</span><span data-stage="pass" class="on">pass</span></div>
+    </div>
+    <div class="benchtext">
+      <p>labgrid handles power, serial and flashing, so a change turns into a run: flash it, boot it, test it, read the log, go again.</p>
+      <p>i like that part boring and repeatable. it leaves room for the rest to get weird. the rock 2f image, the pad roms and centuryplay all came out of loops like this one.</p>
+      <div class="row"><span class="chip">labgrid</span><span class="chip">serial console</span><span class="chip o">power control</span><span class="chip o">hil</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec mark" id="experience">
+  <div class="head">
+    {{deco-exp}}
+    <div><span class="eyebrow">experience</span><h2>where i've been.</h2></div>
+    <div><p>short so far. most of the interesting stuff is in the projects above.</p></div>
+  </div>
+  <div class="exp">
+    <ol class="timeline">
+      <li><time class="now">now</time><div><h3>junior engineer · konsulko</h3>
+        <p>embedded linux and secure boot.</p>
+        <div class="row"><span class="chip a">secure boot</span><span class="chip">embedded linux</span></div></div></li>
+      <li><time>2026</time><div><h3>bsc computer science · fmi, sofia university</h3>
+        <p>graduated in 2026. my state-exam notes turned into durjaven.</p></div></li>
+    </ol>
+    <aside class="card lab">
+      <svg class="shape" aria-hidden="true"><use href="#s-cookie"/></svg>
+      <span class="eyebrow">homelab &amp; devops</span>
+      <h3>a small server at home</h3>
+      <p>i self-host media and game servers and a few tools, all in docker, behind nginx with tls. dns lives on cloudflare. it's where i picked up most of my networking and ops.</p>
+      <div class="row"><span class="chip">docker</span><span class="chip">nginx</span><span class="chip">cloudflare</span><span class="chip o">networking</span><span class="chip o">linux</span></div>
+    </aside>
+  </div>
+  <div class="matrix"><table>
+    <thead><tr><th>area</th><th>tech</th><th>where it shows</th></tr></thead>
+    <tbody>
+      <tr><td>secure boot</td><td><div class="row"><span class="chip a">secure boot</span><span class="chip">embedded linux</span></div></td><td>konsulko</td></tr>
+      <tr><td>test benches</td><td><div class="row"><span class="chip">labgrid</span><span class="chip">serial</span><span class="chip o">hil</span></div></td><td><a href="#bench">the bench</a>: rock 2f, pad pro, centuryplay</td></tr>
+      <tr><td>android platform</td><td><div class="row"><span class="chip">aosp</span><span class="chip">gki 5.10</span><span class="chip o">device trees</span></div></td><td><a href="https://github.com/g8row/dizi-bringup">dizi-bringup</a>, <a href="https://github.com/g8row/ruan-bringup">ruan-bringup</a>, <a href="https://github.com/g8row/dizi-display-drivers">dizi-display-drivers</a></td></tr>
+      <tr><td>embedded linux</td><td><div class="row"><span class="chip">yocto</span><span class="chip">c</span><span class="chip o">rockchip bsp</span><span class="chip o">kernel modules</span></div></td><td><a href="https://github.com/g8row/meta-firewire-recorder">meta-firewire-recorder</a>, <a href="https://github.com/g8row/meta-rockchip">meta-rockchip</a>, <a href="https://github.com/g8row/kmod-sgp30">kmod-sgp30</a></td></tr>
+      <tr><td>apps</td><td><div class="row"><span class="chip">kotlin</span><span class="chip">swift</span><span class="chip">qt6 / c++</span><span class="chip o">python</span></div></td><td><a href="https://github.com/g8row/centuryplay">centuryplay</a>, <a href="https://github.com/g8row/PhotosBackup">PhotosBackup</a>, <a href="https://github.com/g8row/burne">burne</a>, <a href="https://github.com/g8row/kinectfx">kinectfx</a></td></tr>
+      <tr><td>systems</td><td><div class="row"><span class="chip">rust</span><span class="chip o">go</span></div></td><td><a href="https://github.com/g8row/lgroot">lgroot</a>, <a href="https://github.com/g8row/g8rowfm">g8rowfm</a>, <a href="https://github.com/g8row/g8rowfetch">g8rowfetch</a></td></tr>
+      <tr><td>web &amp; ops</td><td><div class="row"><span class="chip">docker</span><span class="chip">nginx</span><span class="chip">cloudflare</span><span class="chip o">networking</span></div></td><td>homelab, client sites</td></tr>
+    </tbody>
+  </table></div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="links">
+    <p>building something on real hardware? let's talk.</p>
+    <div class="row"><a class="btn fill" href="https://github.com/g8row">github ↗</a></div>
+  </div>
+  <div class="word" aria-hidden="true">g8row</div>
+</footer>
+<div class="colophon"><span>© 2026 alexander gurov</span><span>static html · no frameworks · nginx</span></div>
+
+</div>
+</body>
+</html>

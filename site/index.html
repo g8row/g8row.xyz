@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>alexander gurov · g8row</title>
+<meta name="description" content="alexander gurov (g8row): junior engineer at konsulko. android roms, yocto images, test benches and small apps.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="alexander gurov · g8row">
+<meta property="og:description" content="new ideas, built on foundations that behave the same way every time.">
+<meta property="og:url" content="https://g8row.xyz/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#work">skip to work</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="s-cookie" viewBox="0 0 100 100"><path d="M94.0 50.0L93.4 52.8L91.9 55.5L89.8 57.9L87.8 60.1L86.3 62.3L85.5 64.7L85.4 67.5L85.6 70.6L85.5 73.7L84.7 76.7L83.0 79.0L80.5 80.5L77.5 81.3L74.4 81.7L71.5 82.2L69.1 83.1L67.1 84.7L65.3 87.0L63.4 89.5L61.2 91.7L58.6 93.1L55.7 93.4L52.8 92.6L50.0 91.1L47.4 89.4L45.0 88.1L42.5 87.6L39.9 87.8L37.0 88.4L33.8 89.0L30.8 89.0L28.0 88.1L25.8 86.2L24.3 83.5L23.3 80.5L22.4 77.6L21.2 75.3L19.5 73.4L17.1 72.0L14.4 70.6L11.7 68.9L9.6 66.8L8.4 64.1L8.3 61.2L9.1 58.1L10.3 55.2L11.4 52.5L11.8 50.0L11.4 47.5L10.3 44.8L9.1 41.9L8.3 38.8L8.4 35.9L9.6 33.2L11.7 31.1L14.4 29.4L17.1 28.0L19.5 26.6L21.2 24.7L22.4 22.4L23.3 19.5L24.3 16.5L25.8 13.8L28.0 11.9L30.8 11.0L33.8 11.0L37.0 11.6L39.9 12.2L42.5 12.4L45.0 11.9L47.4 10.6L50.0 8.9L52.8 7.4L55.7 6.6L58.6 6.9L61.2 8.3L63.4 10.5L65.3 13.0L67.1 15.3L69.1 16.9L71.5 17.8L74.4 18.3L77.5 18.7L80.5 19.5L83.0 21.0L84.7 23.3L85.5 26.3L85.6 29.4L85.4 32.5L85.5 35.3L86.3 37.7L87.8 39.9L89.8 42.1L91.9 44.5L93.4 47.2Z"/></symbol>
+  <symbol id="s-clover" viewBox="0 0 100 100"><path d="M94.0 50.0L93.7 52.9L92.6 55.6L91.0 58.2L89.0 60.4L86.5 62.4L83.9 64.0L81.2 65.4L78.6 66.5L76.2 67.5L74.1 68.5L72.2 69.5L70.7 70.7L69.5 72.2L68.5 74.1L67.5 76.2L66.5 78.6L65.4 81.2L64.0 83.9L62.4 86.5L60.4 89.0L58.2 91.0L55.6 92.6L52.9 93.7L50.0 94.0L47.1 93.7L44.4 92.6L41.8 91.0L39.6 89.0L37.6 86.5L36.0 83.9L34.6 81.2L33.5 78.6L32.5 76.2L31.5 74.1L30.5 72.2L29.3 70.7L27.8 69.5L25.9 68.5L23.8 67.5L21.4 66.5L18.8 65.4L16.1 64.0L13.5 62.4L11.0 60.4L9.0 58.2L7.4 55.6L6.3 52.9L6.0 50.0L6.3 47.1L7.4 44.4L9.0 41.8L11.0 39.6L13.5 37.6L16.1 36.0L18.8 34.6L21.4 33.5L23.8 32.5L25.9 31.5L27.8 30.5L29.3 29.3L30.5 27.8L31.5 25.9L32.5 23.8L33.5 21.4L34.6 18.8L36.0 16.1L37.6 13.5L39.6 11.0L41.8 9.0L44.4 7.4L47.1 6.3L50.0 6.0L52.9 6.3L55.6 7.4L58.2 9.0L60.4 11.0L62.4 13.5L64.0 16.1L65.4 18.8L66.5 21.4L67.5 23.8L68.5 25.9L69.5 27.8L70.7 29.3L72.2 30.5L74.1 31.5L76.2 32.5L78.6 33.5L81.2 34.6L83.9 36.0L86.5 37.6L89.0 39.6L91.0 41.8L92.6 44.4L93.7 47.1Z"/></symbol>
+  <symbol id="s-flower" viewBox="0 0 100 100"><path d="M94.0 50.0L93.3 52.8L91.3 55.4L88.5 57.7L85.7 59.6L83.3 61.3L81.9 63.2L81.6 65.6L82.0 68.5L82.7 71.8L83.0 75.4L82.6 78.6L81.1 81.1L78.6 82.6L75.4 83.0L71.8 82.7L68.5 82.0L65.6 81.6L63.2 81.9L61.3 83.3L59.6 85.7L57.7 88.5L55.4 91.3L52.8 93.3L50.0 94.0L47.2 93.3L44.6 91.3L42.3 88.5L40.4 85.7L38.7 83.3L36.8 81.9L34.4 81.6L31.5 82.0L28.2 82.7L24.6 83.0L21.4 82.6L18.9 81.1L17.4 78.6L17.0 75.4L17.3 71.8L18.0 68.5L18.4 65.6L18.1 63.2L16.7 61.3L14.3 59.6L11.5 57.7L8.7 55.4L6.7 52.8L6.0 50.0L6.7 47.2L8.7 44.6L11.5 42.3L14.3 40.4L16.7 38.7L18.1 36.8L18.4 34.4L18.0 31.5L17.3 28.2L17.0 24.6L17.4 21.4L18.9 18.9L21.4 17.4L24.6 17.0L28.2 17.3L31.5 18.0L34.4 18.4L36.8 18.1L38.7 16.7L40.4 14.3L42.3 11.5L44.6 8.7L47.2 6.7L50.0 6.0L52.8 6.7L55.4 8.7L57.7 11.5L59.6 14.3L61.3 16.7L63.2 18.1L65.6 18.4L68.5 18.0L71.8 17.3L75.4 17.0L78.6 17.4L81.1 18.9L82.6 21.4L83.0 24.6L82.7 28.2L82.0 31.5L81.6 34.4L81.9 36.8L83.3 38.7L85.7 40.4L88.5 42.3L91.3 44.6L93.3 47.2Z"/></symbol>
+  <symbol id="s-burst" viewBox="0 0 100 100"><path d="M94.0 50.0L93.3 52.8L91.5 55.5L89.6 57.9L88.5 60.3L88.3 63.0L88.7 66.0L88.9 69.2L88.1 72.0L86.1 74.1L83.2 75.5L80.4 76.7L78.1 78.1L76.7 80.4L75.5 83.2L74.1 86.1L72.0 88.1L69.2 88.9L66.0 88.7L63.0 88.3L60.3 88.5L57.9 89.6L55.5 91.5L52.8 93.3L50.0 94.0L47.2 93.3L44.5 91.5L42.1 89.6L39.7 88.5L37.0 88.3L34.0 88.7L30.8 88.9L28.0 88.1L25.9 86.1L24.5 83.2L23.3 80.4L21.9 78.1L19.6 76.7L16.8 75.5L13.9 74.1L11.9 72.0L11.1 69.2L11.3 66.0L11.7 63.0L11.5 60.3L10.4 57.9L8.5 55.5L6.7 52.8L6.0 50.0L6.7 47.2L8.5 44.5L10.4 42.1L11.5 39.7L11.7 37.0L11.3 34.0L11.1 30.8L11.9 28.0L13.9 25.9L16.8 24.5L19.6 23.3L21.9 21.9L23.3 19.6L24.5 16.8L25.9 13.9L28.0 11.9L30.8 11.1L34.0 11.3L37.0 11.7L39.7 11.5L42.1 10.4L44.5 8.5L47.2 6.7L50.0 6.0L52.8 6.7L55.5 8.5L57.9 10.4L60.3 11.5L63.0 11.7L66.0 11.3L69.2 11.1L72.0 11.9L74.1 13.9L75.5 16.8L76.7 19.6L78.1 21.9L80.4 23.3L83.2 24.5L86.1 25.9L88.1 28.0L88.9 30.8L88.7 34.0L88.3 37.0L88.5 39.7L89.6 42.1L91.5 44.5L93.3 47.2Z"/></symbol>
+  <symbol id="s-wave" viewBox="0 0 800 16"><path d="M0 8 Q10 1 20 8 T40 8 Q50 1 60 8 T80 8 Q90 1 100 8 T120 8 Q130 1 140 8 T160 8 Q170 1 180 8 T200 8 Q210 1 220 8 T240 8 Q250 1 260 8 T280 8 Q290 1 300 8 T320 8 Q330 1 340 8 T360 8 Q370 1 380 8 T400 8 Q410 1 420 8 T440 8 Q450 1 460 8 T480 8 Q490 1 500 8 T520 8 Q530 1 540 8 T560 8 Q570 1 580 8 T600 8 Q610 1 620 8 T640 8 Q650 1 660 8 T680 8 Q690 1 700 8 T720 8 Q730 1 740 8 T760 8 Q770 1 780 8 T800 8"/></symbol>
+  <symbol id="s-speaker" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.47 4.47 0 0 0 2.5-4z"/></symbol>
+  <symbol id="s-laptop" viewBox="0 0 24 24"><path d="M4 6h16v10H4zM2 18h20v2H2z"/></symbol>
+</svg>
+
+<div class="frame">
+
+<nav class="nav" aria-label="main">
+  <a href="#work">work</a>
+  <a href="#bench">bench</a>
+  <a href="#experience">experience</a>
+  <a href="https://github.com/g8row">github ↗</a>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="hero-top"><span>junior engineer at konsulko</span><span>embedded linux · android · apps</span></div>
+  <div class="signal" aria-hidden="true"><pre class="l-dots"></pre><pre class="l-lines">
+
+
+
+
+
+                                    .
+                                 ... ..
+                               .. ..   \
+                             ....   \   ..
+                          ...    \   ..   ..
+                         /   ..   \    ..   ...
+           .....       ....    \   ..    ..    \         ...              ....
+      .......   .......    ..   ..   ...   ..   .........   ..................
+      ...    ........  ..    \    ..    \     .  .     .  .  .  ............
+         ............    ..   ...   ..                           . ..  ...  ..
+      ......... /    ..    ..    \                             .  \  ..   ....
+      ...... .....     ..    ..   \                             \  ..  ......
+      ........    ...    ..    \                          \  --  ..  .....   .
+      ....------     ...   ..   \                       \  --  --  ....   ....
+      ..---     ----    \    \                    \  \   \   --  ---   ...
+      ---  ----     --   \                         \  --  --   \    --    ...-
+      ----     ---    \   ...                   \   \   \   \   --    -------
+          -----   --   -----             \   \   \   \   \   \    \      -----
+      -----    --   \                     \   \   \   \   \   --   -----------
+           ---   \   ------       \   \    \   \   \   \   \    \    ----
+      ----    \   --------/        \   -\   \   \   \   \   \    ----    -----
+      -   --   -----------/         \    \   \   \   \  \    ----------------
+       --   ----------   /           \   \   \   \   \   -----------   -------
+      -  --    ----   -- /            \   \   \   \   \       /     ---------
+       --  ------  --   /              \   \   \  \   \----------------/     -
+      - -------      ---               \   \   \   ----------   ------/
+      ------                            \   \  \----------   ----   --
+                                        \   \----------------    ---</pre><pre class="l-peaks">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            -- -- --\-- -- .. ..
+                                         --/  \  \   \ \  \  \  .
+                                      --/  \   \  \  \  \  \  .
+                                    -/  \   \   \  \  \  \  \
+                                   / \   \   \  \   \  \
+                                 -/   \   \   \  \  \
+                                / \    \   \  \
+                              -/   \   \   \   \
+                             / \    \   \   \
+                            /   \    \
+                           /     \   \
+                           /
+
+
+
+
+
+
+
+</pre></div>
+  <div class="namebox">
+    <h1 class="name"><span class="handle">g8row</span><span>alexander</span><span>gurov</span></h1>
+    <p class="tag">new ideas, built on <em>foundations that behave the same way every time.</em></p>
+  </div>
+</header>
+
+<div class="cells facts">
+  <div class="cell"><span class="eyebrow">now</span><b>konsulko</b><span>junior engineer, secure boot</span></div>
+  <div class="cell"><span class="eyebrow">studied</span><b>cs, fmi '26</b><span>sofia university</span></div>
+  <div class="cell"><span class="eyebrow">open source</span><b>469 ★</b><span>44 public repos</span></div>
+  <div class="cell"><span class="eyebrow">homelab</span><b>self-hosted</b><span>media, servers, networking</span></div>
+</div>
+
+<section class="sec mark" id="work">
+  <div class="head">
+    <div class="deco" aria-hidden="true"><div class="glyph r" style="width:366px;height:340px"><svg viewBox="0 0 366 340" style="overflow:visible"><line x1="-3000" y1="170.0" x2="3000" y2="170.0"/><line x1="183.0" y1="-1500" x2="183.0" y2="1500"/><line class="dash" x1="-1582.9" y1="1108.9" x2="1948.9" y2="-768.9"/><circle cx="183.0" cy="170.0" r="150.8"/><circle class="dash" cx="183.0" cy="170.0" r="188.5"/><rect x="179.5" y="166.5" width="7" height="7"/><rect x="28.7" y="166.5" width="7" height="7"/><rect x="330.3" y="166.5" width="7" height="7"/><rect x="179.5" y="15.7" width="7" height="7"/><rect x="179.5" y="317.3" width="7" height="7"/></svg><pre style="--fs:10px">
+
+
+
+                           %%%%%%%
+                         %%####***%%
+                        %%######***%%
+                        %%#####****+%
+                       %%%#####****++%
+                       %%%####*****++%
+                       %%%###******++=
+                      %%%###******+++=%
+                      %%%##*****++++==%
+                %%%%%%%%%##***+++++==--;:%%%%
+           %%##############**++++++==--;;;:::,,.%%
+         %*################**++++===---;;;;:::,,...%
+       %%*******************+++====-----;;;:::,,,...%%
+       %*************+++++++++====-----;;;;:::,,,....%
+       %++*******+++++++++=====-------;;;;:::,,,.....%
+       %%+++++++++++++++======--;;;;;;;::::,,,......%%
+         %==+++++++======-------;::,,,,,,,.........%
+           %%=======-----------;;:,.............%%
+                %%%%;::;;;;;;;;;;:,......%%%%
+                      %:::;;;;;;::,...%
+                      %,,::::::::,....%
+                       .,,::::::,,....
+                       %.,,,,,,,,....%
+                       %...,,,,......%
+                        %...........%
+                        %%.........%%
+                         %%.......%%
+                           %%%%%%%
+
+
+</pre><span class="lbl" style="left:183px;top:368px;transform:translateX(-50%)">clover · n 4 · a 0.30</span></div></div>
+    <div><span class="eyebrow">work</span><h2>a few things i've built.</h2></div>
+    <div><p>what i work on after work and between exams. tablets, boards, apps, whatever i end up needing.</p></div>
+  </div>
+
+  <div class="features">
+    <article class="card feature lit">
+      <div class="text">
+        <div class="top"><svg class="shape a" aria-hidden="true"><use href="#s-cookie"/></svg>
+          <div><h3>centuryplay</h3><span class="sub">kotlin · android 11+ · 63 ★</span></div></div>
+        <p>streams whatever my android phone is playing to airplay speakers. i built it so a 1990s bang &amp; olufsen beosound century could play from my phone, through a raspberry pi running shairport-sync. lossless, multi-room, and it shows up in the system output switcher like any bluetooth device.</p>
+        <div class="row"><span class="chip a">kotlin</span><span class="chip">airplay 2</span><span class="chip o">material 3 expressive</span><span class="chip o">shizuku</span></div>
+        <div class="row"><a class="btn" href="https://github.com/g8row/centuryplay">source ↗</a></div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="cp">
+          <div class="cp-head"><b>centuryplay</b><span>playing on century</span></div>
+          <div class="spk on">
+            <span class="ic"><svg><use href="#s-speaker"/></svg></span>
+            <span><b>century</b><small>playing · lossless</small></span>
+            <span class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <div class="prog"><div class="w"><svg><use href="#s-wave"/></svg></div><span class="knob"></span><span class="flat"></span></div>
+          </div>
+          <div class="spk"><span class="ic"><svg><use href="#s-speaker"/></svg></span><span><b>living room</b><small>airplay 2 · 192.168.1.20</small></span><span></span></div>
+          <div class="spk"><span class="ic"><svg><use href="#s-laptop"/></svg></span><span><b>macbook</b><small>airplay 2 · 192.168.1.31</small></span><span></span></div>
+          <div class="cp-bar"><span>alac · 44.1 khz · multi-room</span><span class="stop">■ stop</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card feature flip lit">
+      <div class="text">
+        <div class="top"><svg class="shape" aria-hidden="true"><use href="#s-clover"/></svg>
+          <div><h3>redmi pad pro roms</h3><span class="sub">aosp · android 16 + 17</span></div></div>
+        <p>custom roms for both pad pro models, starting from a full dump of the stock tablet. most of the time went into making it feel smooth: perfetto traces, surfaceflinger composition and hwui on vulkan until the jank went away. the xiaomi pen works too, worked out from captures of the stock rom.</p>
+        <dl class="spec">
+          <dt>devices</dt><dd>dizi (wi-fi), ruan (5g)</dd>
+          <dt>soc</dt><dd>sm7435 "parrot"</dd>
+          <dt>roms</dt><dd>evolution x 16 + 17, lineageos 23.2</dd>
+          <dt>kernel</dt><dd>source-built 5.10 gki</dd>
+          <dt>gpu</dt><dd>hwui on vulkan, tuned sf composition</dd>
+          <dt>pen</dt><dd>xiaomi pen, bonding + pen keys</dd>
+        </dl>
+        <div class="row"><a class="btn" href="https://github.com/g8row/dizi-bringup">dizi ↗</a><a class="btn" href="https://github.com/g8row/ruan-bringup">ruan ↗</a></div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <div class="tablet"><div class="screen">
+          <div class="bar"><span>dizi · 120 hz</span><span>hwui · vulkan</span></div>
+          <svg class="ink" viewBox="0 0 480 170"><defs><pattern id="pd" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1"/></pattern><mask id="pm" maskUnits="userSpaceOnUse"><path d="M40.0 75.8L38.1 75.9L36.3 76.6L34.8 77.8L33.5 79.5L32.6 81.6L32.2 84.2L32.3 87.2L33.0 90.5L34.3 94.0L36.2 97.6L38.7 101.2L41.7 104.8L45.3 108.1L49.4 111.1L53.8 113.7L58.6 115.8L63.5 117.3L68.6 118.2L73.6 118.3L78.6 117.8L83.3 116.6L87.8 114.7L91.8 112.2L95.4 109.1L98.5 105.5L101.0 101.6L102.9 97.5L104.1 93.2L104.8 89.0L104.9 84.9L104.5 81.2L103.6 77.8L102.4 75.1L100.8 73.0L99.0 71.7L97.1 71.2L95.3 71.5L93.5 72.6L91.9 74.6L90.6 77.4L89.8 80.9L89.3 85.0L89.5 89.5L90.1 94.5L91.4 99.6L93.3 104.8L95.8 109.8L98.9 114.6L102.5 118.9L106.5 122.7L111.0 125.8L115.7 128.1L120.7 129.6L125.7 130.1L130.8 129.7L135.7 128.3L140.5 126.1L144.9 123.1L149.0 119.4L152.6 115.0L155.6 110.2L158.1 105.1L160.0 99.9L161.3 94.6L162.0 89.6L162.1 84.8L161.7 80.6L160.8 76.9L159.5 74.0L158.0 71.9L156.2 70.6L154.3 70.2L152.4 70.7L150.6 72.0L149.0 74.2L147.8 77.1L146.9 80.6L146.5 84.6L146.6 89.0L147.3 93.6L148.6 98.2L150.5 102.8L153.0 107.2L156.0 111.2L159.6 114.7L163.7 117.6L168.1 119.9L172.8 121.4L177.8 122.1L182.9 122.1L187.9 121.3L192.9 119.7L197.6 117.5L202.1 114.7L206.1 111.3L209.7 107.5L212.8 103.5L215.3 99.3L217.1 95.1L218.4 90.9L219.1 86.9L219.2 83.3L218.8 80.1L217.9 77.3L216.7 75.1L215.1 73.5L213.3 72.6L211.4 72.2L209.5 72.6L207.8 73.5L206.2 74.9L204.9 76.9L204.0 79.2L203.6 82.0L203.7 84.9L204.4 88.0L205.7 91.1L207.6 94.2L210.1 97.2L213.2 99.9L216.7 102.3L220.8 104.3L225.2 105.8L230.0 106.9L234.9 107.4L240.0 107.4L245.1 106.9L250.0 105.8L254.8 104.2L259.2 102.2L263.3 99.7L266.8 97.0L269.9 93.9L272.4 90.7L274.3 87.4L275.6 84.1L276.3 80.9L276.4 77.8L276.0 75.0L275.1 72.6L273.8 70.5L272.2 68.9L270.5 67.8L268.6 67.3L266.7 67.3L264.9 67.9L263.3 69.1L262.1 70.7L261.2 72.9L260.8 75.4L260.9 78.3L261.6 81.5L262.9 84.8L264.7 88.2L267.2 91.6L270.3 94.8L273.9 97.8L277.9 100.5L282.4 102.7L287.1 104.4L292.1 105.5L297.1 106.0L302.2 105.8L307.2 105.0L311.9 103.5L316.3 101.4L320.4 98.8L324.0 95.6L327.0 92.0L329.5 88.1L331.4 84.0L332.7 79.8L333.4 75.7L333.5 71.8L333.1 68.2L332.2 65.0L331.0 62.3L329.4 60.3L327.6 59.0L325.7 58.5L323.8 58.8L322.0 59.8L320.5 61.7L319.2 64.3L318.3 67.5L317.9 71.3L318.0 75.6L318.7 80.3L320.0 85.1L321.9 90.0L324.4 94.8L327.4 99.4L331.0 103.6L335.1 107.2L339.5 110.3L344.3 112.6L349.2 114.1L354.3 114.7L359.3 114.5L364.3 113.4L369.0 111.5L373.5 108.9L377.5 105.5L381.1 101.6L384.2 97.3L386.7 92.7L388.6 87.9L389.9 83.2L390.5 78.6L390.7 74.3L390.2 70.5L389.4 67.3L388.1 64.8L386.5 63.0L384.7 62.1L382.9 62.0L381.0 62.8L379.2 64.3L377.6 66.7L376.4 69.8L375.5 73.5L375.1 77.6L375.2 82.2L375.9 86.9L377.1 91.7L379.0 96.5L381.5 101.0L384.6 105.2L388.2 108.9L392.2 112.1L396.7 114.6L401.4 116.4L406.4 117.4L411.4 117.8L416.5 117.3L421.4 116.2L426.2 114.4L430.6 112.1L434.7 109.3L438.3 106.1L441.3 102.7L443.8 99.2L445.7 95.6L447.0 92.1L447.7 88.9L447.8 86.0L447.4 83.5L446.5 81.4L445.2 79.9L443.7 79.0L441.9 78.6L440.0 78.8" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1"><animate attributeName="stroke-dashoffset" values="1;0;0" keyTimes="0;.62;1" dur="7s" repeatCount="indefinite"/></path></mask></defs><rect width="480" height="170" fill="url(#pd)"/><g class="strokes" mask="url(#pm)"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.82;.94;1" dur="7s" repeatCount="indefinite"/><path d="M40.0 75.8L38.1 75.9L36.3 76.6L34.8 77.8L33.5 79.5L32.6 81.6L32.2 84.2L32.3 87.2L33.0 90.5L34.3 94.0L36.2 97.6L38.7 101.2L41.7 104.8" stroke-width="1.8"/><path d="M41.7 104.8L45.3 108.1L49.4 111.1L53.8 113.7L58.6 115.8L63.5 117.3L68.6 118.2L73.6 118.3L78.6 117.8L83.3 116.6L87.8 114.7L91.8 112.2L95.4 109.1" stroke-width="2.3"/><path d="M95.4 109.1L98.5 105.5L101.0 101.6L102.9 97.5L104.1 93.2L104.8 89.0L104.9 84.9L104.5 81.2L103.6 77.8L102.4 75.1L100.8 73.0L99.0 71.7L97.1 71.2" stroke-width="2.2"/><path d="M97.1 71.2L95.3 71.5L93.5 72.6L91.9 74.6L90.6 77.4L89.8 80.9L89.3 85.0L89.5 89.5L90.1 94.5L91.4 99.6L93.3 104.8L95.8 109.8L98.9 114.6" stroke-width="3.0"/><path d="M98.9 114.6L102.5 118.9L106.5 122.7L111.0 125.8L115.7 128.1L120.7 129.6L125.7 130.1L130.8 129.7L135.7 128.3L140.5 126.1L144.9 123.1L149.0 119.4L152.6 115.0" stroke-width="3.5"/><path d="M152.6 115.0L155.6 110.2L158.1 105.1L160.0 99.9L161.3 94.6L162.0 89.6L162.1 84.8L161.7 80.6L160.8 76.9L159.5 74.0L158.0 71.9L156.2 70.6L154.3 70.2" stroke-width="2.9"/><path d="M154.3 70.2L152.4 70.7L150.6 72.0L149.0 74.2L147.8 77.1L146.9 80.6L146.5 84.6L146.6 89.0L147.3 93.6L148.6 98.2L150.5 102.8L153.0 107.2L156.0 111.2" stroke-width="3.4"/><path d="M156.0 111.2L159.6 114.7L163.7 117.6L168.1 119.9L172.8 121.4L177.8 122.1L182.9 122.1L187.9 121.3L192.9 119.7L197.6 117.5L202.1 114.7L206.1 111.3L209.7 107.5" stroke-width="4.2"/><path d="M209.7 107.5L212.8 103.5L215.3 99.3L217.1 95.1L218.4 90.9L219.1 86.9L219.2 83.3L218.8 80.1L217.9 77.3L216.7 75.1L215.1 73.5L213.3 72.6L211.4 72.2" stroke-width="3.4"/><path d="M211.4 72.2L209.5 72.6L207.8 73.5L206.2 74.9L204.9 76.9L204.0 79.2L203.6 82.0L203.7 84.9L204.4 88.0L205.7 91.1L207.6 94.2L210.1 97.2L213.2 99.9" stroke-width="3.3"/><path d="M213.2 99.9L216.7 102.3L220.8 104.3L225.2 105.8L230.0 106.9L234.9 107.4L240.0 107.4L245.1 106.9L250.0 105.8L254.8 104.2L259.2 102.2L263.3 99.7L266.8 97.0" stroke-width="4.3"/><path d="M266.8 97.0L269.9 93.9L272.4 90.7L274.3 87.4L275.6 84.1L276.3 80.9L276.4 77.8L276.0 75.0L275.1 72.6L273.8 70.5L272.2 68.9L270.5 67.8L268.6 67.3" stroke-width="3.8"/><path d="M268.6 67.3L266.7 67.3L264.9 67.9L263.3 69.1L262.1 70.7L261.2 72.9L260.8 75.4L260.9 78.3L261.6 81.5L262.9 84.8L264.7 88.2L267.2 91.6L270.3 94.8" stroke-width="3.1"/><path d="M270.3 94.8L273.9 97.8L277.9 100.5L282.4 102.7L287.1 104.4L292.1 105.5L297.1 106.0L302.2 105.8L307.2 105.0L311.9 103.5L316.3 101.4L320.4 98.8L324.0 95.6" stroke-width="3.9"/><path d="M324.0 95.6L327.0 92.0L329.5 88.1L331.4 84.0L332.7 79.8L333.4 75.7L333.5 71.8L333.1 68.2L332.2 65.0L331.0 62.3L329.4 60.3L327.6 59.0L325.7 58.5" stroke-width="3.8"/><path d="M325.7 58.5L323.8 58.8L322.0 59.8L320.5 61.7L319.2 64.3L318.3 67.5L317.9 71.3L318.0 75.6L318.7 80.3L320.0 85.1L321.9 90.0L324.4 94.8L327.4 99.4" stroke-width="2.8"/><path d="M327.4 99.4L331.0 103.6L335.1 107.2L339.5 110.3L344.3 112.6L349.2 114.1L354.3 114.7L359.3 114.5L364.3 113.4L369.0 111.5L373.5 108.9L377.5 105.5L381.1 101.6" stroke-width="3.1"/><path d="M381.1 101.6L384.2 97.3L386.7 92.7L388.6 87.9L389.9 83.2L390.5 78.6L390.7 74.3L390.2 70.5L389.4 67.3L388.1 64.8L386.5 63.0L384.7 62.1L382.9 62.0" stroke-width="3.3"/><path d="M382.9 62.0L381.0 62.8L379.2 64.3L377.6 66.7L376.4 69.8L375.5 73.5L375.1 77.6L375.2 82.2L375.9 86.9L377.1 91.7L379.0 96.5L381.5 101.0L384.6 105.2" stroke-width="2.4"/><path d="M384.6 105.2L388.2 108.9L392.2 112.1L396.7 114.6L401.4 116.4L406.4 117.4L411.4 117.8L416.5 117.3L421.4 116.2L426.2 114.4L430.6 112.1L434.7 109.3L438.3 106.1" stroke-width="2.1"/><path d="M438.3 106.1L441.3 102.7L443.8 99.2L445.7 95.6L447.0 92.1L447.7 88.9L447.8 86.0L447.4 83.5L446.5 81.4L445.2 79.9L443.7 79.0L441.9 78.6L440.0 78.8" stroke-width="1.9"/></g><g class="tip"><animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.62;.66;.98;1" dur="7s" repeatCount="indefinite"/><animateMotion path="M40.0 75.8L38.1 75.9L36.3 76.6L34.8 77.8L33.5 79.5L32.6 81.6L32.2 84.2L32.3 87.2L33.0 90.5L34.3 94.0L36.2 97.6L38.7 101.2L41.7 104.8L45.3 108.1L49.4 111.1L53.8 113.7L58.6 115.8L63.5 117.3L68.6 118.2L73.6 118.3L78.6 117.8L83.3 116.6L87.8 114.7L91.8 112.2L95.4 109.1L98.5 105.5L101.0 101.6L102.9 97.5L104.1 93.2L104.8 89.0L104.9 84.9L104.5 81.2L103.6 77.8L102.4 75.1L100.8 73.0L99.0 71.7L97.1 71.2L95.3 71.5L93.5 72.6L91.9 74.6L90.6 77.4L89.8 80.9L89.3 85.0L89.5 89.5L90.1 94.5L91.4 99.6L93.3 104.8L95.8 109.8L98.9 114.6L102.5 118.9L106.5 122.7L111.0 125.8L115.7 128.1L120.7 129.6L125.7 130.1L130.8 129.7L135.7 128.3L140.5 126.1L144.9 123.1L149.0 119.4L152.6 115.0L155.6 110.2L158.1 105.1L160.0 99.9L161.3 94.6L162.0 89.6L162.1 84.8L161.7 80.6L160.8 76.9L159.5 74.0L158.0 71.9L156.2 70.6L154.3 70.2L152.4 70.7L150.6 72.0L149.0 74.2L147.8 77.1L146.9 80.6L146.5 84.6L146.6 89.0L147.3 93.6L148.6 98.2L150.5 102.8L153.0 107.2L156.0 111.2L159.6 114.7L163.7 117.6L168.1 119.9L172.8 121.4L177.8 122.1L182.9 122.1L187.9 121.3L192.9 119.7L197.6 117.5L202.1 114.7L206.1 111.3L209.7 107.5L212.8 103.5L215.3 99.3L217.1 95.1L218.4 90.9L219.1 86.9L219.2 83.3L218.8 80.1L217.9 77.3L216.7 75.1L215.1 73.5L213.3 72.6L211.4 72.2L209.5 72.6L207.8 73.5L206.2 74.9L204.9 76.9L204.0 79.2L203.6 82.0L203.7 84.9L204.4 88.0L205.7 91.1L207.6 94.2L210.1 97.2L213.2 99.9L216.7 102.3L220.8 104.3L225.2 105.8L230.0 106.9L234.9 107.4L240.0 107.4L245.1 106.9L250.0 105.8L254.8 104.2L259.2 102.2L263.3 99.7L266.8 97.0L269.9 93.9L272.4 90.7L274.3 87.4L275.6 84.1L276.3 80.9L276.4 77.8L276.0 75.0L275.1 72.6L273.8 70.5L272.2 68.9L270.5 67.8L268.6 67.3L266.7 67.3L264.9 67.9L263.3 69.1L262.1 70.7L261.2 72.9L260.8 75.4L260.9 78.3L261.6 81.5L262.9 84.8L264.7 88.2L267.2 91.6L270.3 94.8L273.9 97.8L277.9 100.5L282.4 102.7L287.1 104.4L292.1 105.5L297.1 106.0L302.2 105.8L307.2 105.0L311.9 103.5L316.3 101.4L320.4 98.8L324.0 95.6L327.0 92.0L329.5 88.1L331.4 84.0L332.7 79.8L333.4 75.7L333.5 71.8L333.1 68.2L332.2 65.0L331.0 62.3L329.4 60.3L327.6 59.0L325.7 58.5L323.8 58.8L322.0 59.8L320.5 61.7L319.2 64.3L318.3 67.5L317.9 71.3L318.0 75.6L318.7 80.3L320.0 85.1L321.9 90.0L324.4 94.8L327.4 99.4L331.0 103.6L335.1 107.2L339.5 110.3L344.3 112.6L349.2 114.1L354.3 114.7L359.3 114.5L364.3 113.4L369.0 111.5L373.5 108.9L377.5 105.5L381.1 101.6L384.2 97.3L386.7 92.7L388.6 87.9L389.9 83.2L390.5 78.6L390.7 74.3L390.2 70.5L389.4 67.3L388.1 64.8L386.5 63.0L384.7 62.1L382.9 62.0L381.0 62.8L379.2 64.3L377.6 66.7L376.4 69.8L375.5 73.5L375.1 77.6L375.2 82.2L375.9 86.9L377.1 91.7L379.0 96.5L381.5 101.0L384.6 105.2L388.2 108.9L392.2 112.1L396.7 114.6L401.4 116.4L406.4 117.4L411.4 117.8L416.5 117.3L421.4 116.2L426.2 114.4L430.6 112.1L434.7 109.3L438.3 106.1L441.3 102.7L443.8 99.2L445.7 95.6L447.0 92.1L447.7 88.9L447.8 86.0L447.4 83.5L446.5 81.4L445.2 79.9L443.7 79.0L441.9 78.6L440.0 78.8" keyPoints="0;1;1" keyTimes="0;.62;1" calcMode="linear" dur="7s" repeatCount="indefinite"/><circle r="11" class="hover"/><circle r="3.5"/></g></svg><svg class="frames" viewBox="0 0 480 56"><path class="scroll" d="M1 56v-16M6 56v-20M11 56v-25M16 56v-20M21 56v-26M26 56v-25M31 56v-27M36 56v-21M41 56v-30M46 56v-22M51 56v-30M56 56v-28M61 56v-24M66 56v-28M71 56v-21M76 56v-27M81 56v-18M86 56v-22M91 56v-28M96 56v-25M101 56v-17M106 56v-23M111 56v-21M116 56v-30M121 56v-20M126 56v-28M131 56v-18M136 56v-20M141 56v-22M146 56v-23M151 56v-19M156 56v-22M161 56v-24M166 56v-23M171 56v-25M176 56v-21M181 56v-19M186 56v-21M191 56v-21M196 56v-33M201 56v-17M206 56v-25M211 56v-19M216 56v-18M221 56v-30M226 56v-27M231 56v-28M236 56v-26M241 56v-16M246 56v-21M251 56v-19M256 56v-22M261 56v-19M266 56v-19M271 56v-31M276 56v-16M281 56v-24M286 56v-16M291 56v-18M296 56v-23M301 56v-19M306 56v-19M311 56v-17M316 56v-25M321 56v-23M326 56v-33M331 56v-34M336 56v-27M341 56v-28M346 56v-21M351 56v-25M356 56v-21M361 56v-21M366 56v-23M371 56v-24M376 56v-20M381 56v-21M386 56v-20M391 56v-29M396 56v-27M401 56v-19M406 56v-18M411 56v-23M416 56v-28M421 56v-18M426 56v-18M431 56v-23M436 56v-23M441 56v-21M446 56v-16M451 56v-23M456 56v-25M461 56v-19M466 56v-27M471 56v-27M476 56v-28M481 56v-16M486 56v-20M491 56v-25M496 56v-20M501 56v-26M506 56v-25M511 56v-27M516 56v-21M521 56v-30M526 56v-22M531 56v-30M536 56v-28M541 56v-24M546 56v-28M551 56v-21M556 56v-27M561 56v-18M566 56v-22M571 56v-28M576 56v-25M581 56v-17M586 56v-23M591 56v-21M596 56v-30M601 56v-20M606 56v-28M611 56v-18M616 56v-20M621 56v-22M626 56v-23M631 56v-19M636 56v-22M641 56v-24M646 56v-23M651 56v-25M656 56v-21M661 56v-19M666 56v-21M671 56v-21M676 56v-33M681 56v-17M686 56v-25M691 56v-19M696 56v-18M701 56v-30M706 56v-27M711 56v-28M716 56v-26M721 56v-16M726 56v-21M731 56v-19M736 56v-22M741 56v-19M746 56v-19M751 56v-31M756 56v-16M761 56v-24M766 56v-16M771 56v-18M776 56v-23M781 56v-19M786 56v-19M791 56v-17M796 56v-25M801 56v-23M806 56v-33M811 56v-34M816 56v-27M821 56v-28M826 56v-21M831 56v-25M836 56v-21M841 56v-21M846 56v-23M851 56v-24M856 56v-20M861 56v-21M866 56v-20M871 56v-29M876 56v-27M881 56v-19M886 56v-18M891 56v-23M896 56v-28M901 56v-18M906 56v-18M911 56v-23M916 56v-23M921 56v-21M926 56v-16M931 56v-23M936 56v-25M941 56v-19M946 56v-27M951 56v-27M956 56v-28"/><line x1="0" x2="480" y1="14.5" y2="14.5"/><text x="480" y="10" text-anchor="end">8.3 ms</text></svg>
+          <div class="ft"><span>frame time</span><span>pen · bonded</span></div>
+        </div></div>
+      </div>
+    </article>
+
+    <article class="card feature lit">
+      <div class="text">
+        <div class="top"><svg class="shape" aria-hidden="true"><use href="#s-burst"/></svg>
+          <div><h3>equip-1</h3><span class="sub">yocto · rockchip rk3528a · rock 2f</span></div></div>
+        <p>an old dv camcorder, a radxa rock 2f and a phone. the yocto image captures dv and hdv over firewire, streams a live preview over webrtc, and gets set up over bluetooth and wi-fi from an android app. flash it to an sd card and it boots straight into the recorder.</p>
+        <div class="pipe" aria-label="ieee-1394 camera to rk3528a to mediamtx to webrtc to android"><span>ieee-1394</span><i>→</i><span class="on">rk3528a</span><i>→</i><span>mediamtx</span><i>→</i><span>whep</span><i>→</i><span>android</span></div>
+        <div class="row"><a class="btn" href="https://github.com/g8row/meta-firewire-recorder">meta-firewire-recorder ↗</a><a class="btn" href="https://github.com/g8row/meta-rockchip">meta-rockchip ↗</a></div>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <svg class="board" viewBox="0 0 560 290">
+          <rect class="part" x="30" y="120" width="100" height="56" rx="12"/>
+          <rect class="part" x="8" y="132" width="26" height="32" rx="7"/>
+          <circle class="soc" cx="20" cy="148" r="9"/>
+          <rect class="part" x="88" y="104" width="38" height="18" rx="5"/>
+          <circle class="rec" cx="118" cy="134" r="3.5"/>
+          <text x="30" y="200">dv camcorder</text>
+          <path class="wire" d="M130 152 C176 152 180 172 222 172"/>
+          <path class="flow" d="M130 152 C176 152 180 172 222 172"/>
+          <text x="140" y="138">ieee-1394</text>
+          <rect class="pcb" x="220" y="70" width="190" height="170" rx="14"/>
+          <circle cx="236" cy="86" r="5" fill="none" stroke="#3c3c3c"/><circle cx="394" cy="86" r="5" fill="none" stroke="#3c3c3c"/>
+          <circle cx="236" cy="224" r="5" fill="none" stroke="#3c3c3c"/><circle cx="394" cy="224" r="5" fill="none" stroke="#3c3c3c"/>
+          <circle class="pin" cx="254" cy="96" r="2.2"/><circle class="pin" cx="264" cy="96" r="2.2"/><circle class="pin" cx="274" cy="96" r="2.2"/><circle class="pin" cx="284" cy="96" r="2.2"/><circle class="pin" cx="294" cy="96" r="2.2"/><circle class="pin" cx="304" cy="96" r="2.2"/><circle class="pin" cx="314" cy="96" r="2.2"/><circle class="pin" cx="324" cy="96" r="2.2"/><circle class="pin" cx="334" cy="96" r="2.2"/><circle class="pin" cx="344" cy="96" r="2.2"/><circle class="pin" cx="354" cy="96" r="2.2"/><circle class="pin" cx="364" cy="96" r="2.2"/><circle class="pin" cx="374" cy="96" r="2.2"/>
+          <circle class="pin" cx="254" cy="106" r="2.2"/><circle class="pin" cx="264" cy="106" r="2.2"/><circle class="pin" cx="274" cy="106" r="2.2"/><circle class="pin" cx="284" cy="106" r="2.2"/><circle class="pin" cx="294" cy="106" r="2.2"/><circle class="pin" cx="304" cy="106" r="2.2"/><circle class="pin" cx="314" cy="106" r="2.2"/><circle class="pin" cx="324" cy="106" r="2.2"/><circle class="pin" cx="334" cy="106" r="2.2"/><circle class="pin" cx="344" cy="106" r="2.2"/><circle class="pin" cx="354" cy="106" r="2.2"/><circle class="pin" cx="364" cy="106" r="2.2"/><circle class="pin" cx="374" cy="106" r="2.2"/>
+          <rect class="part" x="212" y="160" width="14" height="24" rx="3"/>
+          <rect class="soc" x="262" y="132" width="66" height="66" rx="5"/>
+          <rect x="272" y="142" width="46" height="46" rx="3" fill="none" stroke="#2e2e2e"/>
+          <text class="hot" x="295" y="169" text-anchor="middle">rk3528a</text>
+          <rect class="part" x="398" y="122" width="22" height="18" rx="2"/>
+          <rect class="part" x="398" y="146" width="22" height="18" rx="2"/>
+          <rect class="part" x="394" y="178" width="26" height="32" rx="2"/>
+          <circle class="led" cx="244" cy="212" r="3.5"/>
+          <text x="254" y="216">act</text>
+          <text x="315" y="262" text-anchor="middle">radxa rock 2f</text>
+          <path class="air" d="M436 117.5 A12 12 0 0 1 436 134.5"/>
+          <path class="air d1" d="M443 110.4 A22 22 0 0 1 443 141.6"/>
+          <path class="air d2" d="M450 103.4 A32 32 0 0 1 450 148.6"/>
+          <text x="424" y="176">webrtc</text>
+          <rect class="part" x="478" y="62" width="72" height="150" rx="14"/>
+          <rect x="484" y="74" width="60" height="126" rx="7" fill="#0d0f13"/>
+          <text class="hot" x="490" y="90" style="font-size:10px">live</text>
+          <circle class="rec" cx="536" cy="86" r="3"/>
+          <rect x="489" y="98" width="50" height="36" rx="4" fill="#1b222c"/>
+          <path d="M509 108 L509 124 L522 116 Z" fill="#a8c7fa"/>
+          <rect x="489" y="144" width="40" height="4" rx="2" fill="#2a2a2a"/>
+          <rect x="489" y="154" width="28" height="4" rx="2" fill="#2a2a2a"/>
+          <circle cx="514" cy="182" r="10" fill="#a8c7fa"/>
+          <circle cx="514" cy="182" r="4" fill="#e5484d"/>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+  <div class="cells more">
+    <div class="cell"><div class="hd"><a href="https://github.com/g8row/PhotosBackup">PhotosBackup</a><span class="sub">swift · 226 ★</span></div>
+      <p>backs up iphone photos, videos and albums to google photos, entirely on the phone. no desktop app, no server.</p>
+      <div class="row"><span class="chip">swiftui</span><span class="chip o">ios</span></div></div>
+    <div class="cell"><div class="hd"><b>lec2tex + durjaven</b><span class="sub">python · latex</span></div>
+      <p>turning university material into books: lecture videos with bulgarian audio and whiteboards into a 172-page statistics book, and 365 pages plus 165 photos of state-exam notes into one compilable latex book.</p>
+      <div class="row"><a class="chip o" href="https://github.com/AlexSPx/lec2tex">lec2tex ↗</a><a class="chip o" href="https://g8row.github.io/durjaven/">durjaven ↗</a></div></div>
+    <div class="cell"><div class="hd"><a href="https://github.com/g8row/kinectfx">kinectfx</a><span class="sub">python · qt</span></div>
+      <p>an xbox 360 kinect as a webcam: depth point clouds, relief lighting and scan planes, piped into a virtual camera for discord.</p>
+      <div class="row"><span class="chip">depth</span><span class="chip o">virtual camera</span></div></div>
+    <div class="cell"><div class="hd"><b>veadent + winslow</b><span class="sub">web · client sites</span></div>
+      <p>veadent.bg, for a 24/7 dental clinic in sofia, and winslow, a bilingual site for holiday rentals and sales in bansko, edited through a git-based cms.</p>
+      <div class="row"><a class="chip o" href="https://veadent.bg">veadent.bg ↗</a><span class="chip o">astro</span></div></div>
+  </div>
+</section>
+
+<section class="sec mark" id="bench">
+  <div class="head flip">
+    <div class="deco" aria-hidden="true"><div class="glyph l" style="width:366px;height:340px"><svg viewBox="0 0 366 340" style="overflow:visible"><line x1="-3000" y1="170.0" x2="3000" y2="170.0"/><line x1="183.0" y1="-1500" x2="183.0" y2="1500"/><line class="dash" x1="-1582.9" y1="1108.9" x2="1948.9" y2="-768.9"/><circle cx="183.0" cy="170.0" r="150.8"/><circle class="dash" cx="183.0" cy="170.0" r="188.5"/><rect x="179.5" y="166.5" width="7" height="7"/><rect x="28.7" y="166.5" width="7" height="7"/><rect x="330.3" y="166.5" width="7" height="7"/><rect x="179.5" y="15.7" width="7" height="7"/><rect x="179.5" y="317.3" width="7" height="7"/></svg><pre style="--fs:10px">
+
+
+
+                            %%%%%
+                           %###**%
+                          %#####**%
+               %%        %#####****%        %%
+             %%%%%%%%%% %######****+% %%%----;%%
+             %%%%%%%%%%%%%####*****++=====---;;%
+             %%%%%%%%%%%%%###******+++====---;:%
+              %%%%%##########*****++++====--;;%
+              %%%%##########*****++++====--;;:%
+               %#%#####***#***++++++====--;;:%
+              %%######*******+++++=====--;;:,%%
+           %%#########****++*++++====--;;;::,,..%%
+        %%****************+++++====----;;;::::,,...%%
+       %%************++++++++=====-----;;;;:::,,,...%%
+       %%+*******++++++++++=====-----;;;;;:::,,,....%%
+        %%++++++++++++++=====------;;::::,,,,......%%
+           %%===============----;;;;;::,,.......%%
+              %%-========------;;:;;;::,.....%%
+               %----------;;;;;;:::::::,,....%
+              %;--------;;;:;;;;:,,,,,,,,.....%
+              %;;----;;;::::::::,,............%
+             %:;;;;;;:::,,,,:::,,..............%
+             %:::::::,.....,,,,,...............%
+             %%,,,,.%%% %....,,.....% %%%.....%%
+               %%        %.........%        %%
+                          %.......%
+                           %.....%
+                            %%%%%
+
+
+</pre><span class="lbl" style="left:183px;top:368px;transform:translateX(-50%)">flower · n 8 · a 0.16</span></div></div>
+    <div><span class="eyebrow">the bench</span><h2>a board, a serial cable and a lot of reboots.</h2><p>most of what i build ends up on this setup at some point.</p></div>
+  </div>
+  <div class="benchrow">
+    <div class="card bench lit" aria-hidden="true">
+      <div class="bench-grid">
+        <div class="b-board">
+<pre class="b-base">
+  mains ─────────┐
+                 │
+   ┌─────────────┴────────────────────┐
+   │ ▓▓ ▓▓ usb              ┌──┐ eth  │
+   │                        └──┘      │
+   │  ┌──────────┐  ::::::::::::::    │
+   │  │░░░░░░░░░░│  ::::::::::::::    │
+   │  │░░ soc  ░░│                    │
+   │  │░░░░░░░░░░│   o pwr    o act   │
+   │  └──────────┘                    │
+   │ [sd]                    uart ────┼───────
+   └──────────────────────────────────┘</pre><pre class="b-hot"></pre>
+<pre class="b-bar">pass   [████████████████████████] 100%</pre>
+        </div>
+<pre class="console">bench   power on
+bench   writing image.wic.gz
+bench   flash ok, checksum matches
+U-Boot SPL 2024.07
+Starting kernel ...
+[    0.000000] Booting Linux on CPU 0x0
+[    3.411870] systemd: multi-user.target
+board login: root
+test    boot ............ <b>ok</b>
+test    network ......... <b>ok</b>
+test    capture ......... <b>ok</b>
+<b>run 0412 passed</b></pre>
+      </div>
+      <div class="stages"><span data-stage="power">power</span><span data-stage="flash">flash</span><span data-stage="boot">boot</span><span data-stage="test">test</span><span data-stage="pass" class="on">pass</span></div>
+    </div>
+    <div class="benchtext">
+      <p>labgrid handles power, serial and flashing, so a change turns into a run: flash it, boot it, test it, read the log, go again.</p>
+      <p>i like that part boring and repeatable. it leaves room for the rest to get weird. the rock 2f image, the pad roms and centuryplay all came out of loops like this one.</p>
+      <div class="row"><span class="chip">labgrid</span><span class="chip">serial console</span><span class="chip o">power control</span><span class="chip o">hil</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec mark" id="experience">
+  <div class="head">
+    <div class="deco" aria-hidden="true"><div class="glyph r" style="width:324px;height:300px"><svg viewBox="0 0 324 300" style="overflow:visible"><line x1="-3000" y1="150.0" x2="3000" y2="150.0"/><line x1="162.0" y1="-1500" x2="162.0" y2="1500"/><line class="dash" x1="-1603.9" y1="1088.9" x2="1927.9" y2="-788.9"/><circle cx="162.0" cy="150.0" r="134.0"/><circle class="dash" cx="162.0" cy="150.0" r="166.3"/><rect x="158.5" y="146.5" width="7" height="7"/><rect x="24.5" y="146.5" width="7" height="7"/><rect x="292.5" y="146.5" width="7" height="7"/><rect x="158.5" y="12.5" width="7" height="7"/><rect x="158.5" y="280.5" width="7" height="7"/></svg><pre style="--fs:10px">
+
+
+
+                           %%**%%
+                %%%%%%   %%#****+%
+               %%%%%%%#%%###****+=%
+               %%%%%%%%#####****++=%%%%%%%
+              %%%%%%#######****+++==----;;%%
+              %%%%%#######****++++===---;;:%
+         %%%%%%%%%%#######***++++====--;;:%
+       %%#####%%%#####******++++====---;:,%
+       %%############******++++====--;;::,%
+        %#######********++++++====--;;::,,.%%
+         %************+++++=====---;;;::,,,..%%
+          %*********++++++====-----;;;:::,,...%%
+          %++***+++++++=====-----;;;;:::,,....%%
+         %++++++++++======-----;;;:::,,......%%
+        %==+++++========-----;;;;::,,......%%
+       %%==========------;;;;;:::::,,.....%
+       %%---------------;;;;;::,,,,,,.....%
+         %%%%;;;;;;;;;;;::::::,,..........%
+              %::;;;;;::,,,::,,............%
+              %,::::::,,..,,,,............%%
+               %,,:,,,.............%%%%%%%
+               %.......%%.........%
+                %%%%%%   %%......%
+                           %%..%%
+
+
+</pre><span class="lbl" style="left:162px;top:326px;transform:translateX(-50%)">cookie · n 9 · a 0.10</span></div></div>
+    <div><span class="eyebrow">experience</span><h2>where i've been.</h2></div>
+    <div><p>short so far. most of the interesting stuff is in the projects above.</p></div>
+  </div>
+  <div class="exp">
+    <ol class="timeline">
+      <li><time class="now">now</time><div><h3>junior engineer · konsulko</h3>
+        <p>embedded linux and secure boot.</p>
+        <div class="row"><span class="chip a">secure boot</span><span class="chip">embedded linux</span></div></div></li>
+      <li><time>2026</time><div><h3>bsc computer science · fmi, sofia university</h3>
+        <p>graduated in 2026. my state-exam notes turned into durjaven.</p></div></li>
+    </ol>
+    <aside class="card lab">
+      <svg class="shape" aria-hidden="true"><use href="#s-cookie"/></svg>
+      <span class="eyebrow">homelab &amp; devops</span>
+      <h3>a small server at home</h3>
+      <p>i self-host media and game servers and a few tools, all in docker, behind nginx with tls. dns lives on cloudflare. it's where i picked up most of my networking and ops.</p>
+      <div class="row"><span class="chip">docker</span><span class="chip">nginx</span><span class="chip">cloudflare</span><span class="chip o">networking</span><span class="chip o">linux</span></div>
+    </aside>
+  </div>
+  <div class="matrix"><table>
+    <thead><tr><th>area</th><th>tech</th><th>where it shows</th></tr></thead>
+    <tbody>
+      <tr><td>secure boot</td><td><div class="row"><span class="chip a">secure boot</span><span class="chip">embedded linux</span></div></td><td>konsulko</td></tr>
+      <tr><td>test benches</td><td><div class="row"><span class="chip">labgrid</span><span class="chip">serial</span><span class="chip o">hil</span></div></td><td><a href="#bench">the bench</a>: rock 2f, pad pro, centuryplay</td></tr>
+      <tr><td>android platform</td><td><div class="row"><span class="chip">aosp</span><span class="chip">gki 5.10</span><span class="chip o">device trees</span></div></td><td><a href="https://github.com/g8row/dizi-bringup">dizi-bringup</a>, <a href="https://github.com/g8row/ruan-bringup">ruan-bringup</a>, <a href="https://github.com/g8row/dizi-display-drivers">dizi-display-drivers</a></td></tr>
+      <tr><td>embedded linux</td><td><div class="row"><span class="chip">yocto</span><span class="chip">c</span><span class="chip o">rockchip bsp</span><span class="chip o">kernel modules</span></div></td><td><a href="https://github.com/g8row/meta-firewire-recorder">meta-firewire-recorder</a>, <a href="https://github.com/g8row/meta-rockchip">meta-rockchip</a>, <a href="https://github.com/g8row/kmod-sgp30">kmod-sgp30</a></td></tr>
+      <tr><td>apps</td><td><div class="row"><span class="chip">kotlin</span><span class="chip">swift</span><span class="chip">qt6 / c++</span><span class="chip o">python</span></div></td><td><a href="https://github.com/g8row/centuryplay">centuryplay</a>, <a href="https://github.com/g8row/PhotosBackup">PhotosBackup</a>, <a href="https://github.com/g8row/burne">burne</a>, <a href="https://github.com/g8row/kinectfx">kinectfx</a></td></tr>
+      <tr><td>systems</td><td><div class="row"><span class="chip">rust</span><span class="chip o">go</span></div></td><td><a href="https://github.com/g8row/lgroot">lgroot</a>, <a href="https://github.com/g8row/g8rowfm">g8rowfm</a>, <a href="https://github.com/g8row/g8rowfetch">g8rowfetch</a></td></tr>
+      <tr><td>web &amp; ops</td><td><div class="row"><span class="chip">docker</span><span class="chip">nginx</span><span class="chip">cloudflare</span><span class="chip o">networking</span></div></td><td>homelab, client sites</td></tr>
+    </tbody>
+  </table></div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="links">
+    <p>building something on real hardware? let's talk.</p>
+    <div class="row"><a class="btn fill" href="https://github.com/g8row">github ↗</a></div>
+  </div>
+  <div class="word" aria-hidden="true">g8row</div>
+</footer>
+<div class="colophon"><span>© 2026 alexander gurov</span><span>static html · no frameworks · nginx</span></div>
+
+</div>
+</body>
+</html>
